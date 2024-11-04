@@ -6,7 +6,10 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "jsx": "preserve",
+    "module": "esnext",
+    "moduleResolution": "node"
   },
   "include": [
     "**/*.ts",
