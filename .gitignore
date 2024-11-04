@@ -40,3 +40,8 @@ yarn-error.log*
 next-env.d.ts
 
 .eslintcache
+
+
+app/freesound/page.js
+app/fs-map/Freesound.js
+app/fs-map-tone/Freesound.js
