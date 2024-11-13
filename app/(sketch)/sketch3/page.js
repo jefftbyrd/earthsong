@@ -26,7 +26,7 @@ const sketch = (p5) => {
     p5.background(0);
     const circleHue = p5.map(p5.mouseX, 0, p5.width, 0, 360);
     // let meterMap = meterLevel;
-    const diameter = p5.map(meterLevel, -40, -20, 20, 300);
+    const diameter = p5.map(meterLevel, -100, -20, 20, 300);
     // const diameter = p5.map(p5.mouseY, 0, p5.height, 20, 300);
     p5.fill(circleHue, 80, 90);
     p5.circle(p5.width / 2, p5.height / 2, diameter);
@@ -82,6 +82,7 @@ export default function Sketch1() {
           play
         </button>
         <button onClick={stop}>stop</button>
+        <p>{meterLevel}</p>
       </div>
       <NextReactP5Wrapper sketch={sketch} meterLevel={meterLevel} />
     </>
