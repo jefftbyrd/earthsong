@@ -7,9 +7,7 @@
         "name": "next"
       }
     ],
-    "jsx": "preserve",
-    "module": "esnext",
-    "moduleResolution": "node"
+    "jsx": "preserve"
   },
   "include": [
     "**/*.ts",
@@ -18,6 +16,7 @@
     "**/*.jsx",
     "**/*.cjs",
     "**/*.mjs",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "app/(sketch)/sketch1/page.js"
   ]
 }

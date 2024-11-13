@@ -1,6 +1,6 @@
 // 'use client';
 import React, { useEffect, useState } from 'react';
-import Player2 from './Player2';
+import PlayerVolume7 from './PlayerVolume7';
 
 export default function Freesound(props) {
   const [isLoading, setIsLoading] = useState(true);
@@ -10,8 +10,7 @@ export default function Freesound(props) {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        // 'https://freesound.org/apiv2/search/text/?filter=%257B%2521geofilt%2520sfield%3Dgeotag%2520pt%3D48.2255%2C16.4137%2520d%3D10%257D%2520tag%3Afield-recording&fields=id%2Cpreviews%2Cname%2Cdescription%2Cgeotag%2Ctags&page_size=12  &token=TXgf9oo3ePNtOWZ7TkZ7zEJrwWDFi8UKCjoh2zTv',
-        `https://freesound.org/apiv2/search/text/?filter=%257B%2521geofilt%2520sfield%3Dgeotag%2520pt%3D${props.pin.lat}%2C${props.pin.lng}%2520d%3D10%257D%2520tag%3Afield-recording&fields=id%2Cpreviews%2Cname%2Cdescription%2Cgeotag%2Ctags&page_size=12  &token=TXgf9oo3ePNtOWZ7TkZ7zEJrwWDFi8UKCjoh2zTv`,
+        `https://freesound.org/apiv2/search/text/?filter=%257B%2521geofilt%2520sfield%3Dgeotag%2520pt%3D${props.pin.lat}%2C${props.pin.lng}%2520d%3D10%257D%2520tag%3Afield-recording&fields=id%2Cpreviews%2Cname%2Cdescription%2Cgeotag%2Ctags&page_size=12  &token=${process.env.NEXT_PUBLIC_FREESOUND_API_KEY}`,
       );
       const json = await response.json();
       setSounds(json);
@@ -48,7 +47,7 @@ export default function Freesound(props) {
               </p>
 
               {sounds.results ? (
-                <Player2 soundUrl={sound.previews['preview-lq-mp3']} />
+                <PlayerVolume7 soundUrl={sound.previews['preview-lq-mp3']} />
               ) : null}
               <p>
                 <strong>Tags:</strong> {sound.tags.join(', ')}

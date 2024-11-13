@@ -3,48 +3,35 @@ import { useEffect, useRef, useState } from 'react';
 import * as Tone from 'tone';
 
 export default function Player(props) {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const multiPlayer = useRef(null);
-  const [start, setStart] = useState(false);
+  // const [isLoaded, setIsLoaded] = useState(false);
+  const player = useRef(null);
+  // const [start, setStart] = useState(false);
 
   useEffect(() => {
-    multiPlayer.current = new Tone.Players({
-      1: 'https://cdn.freesound.org/previews/166/166421_1661766-hq.mp3',
-      2: 'https://cdn.freesound.org/previews/11/11703_2-hq.mp3',
-      3: 'https://cdn.freesound.org/previews/11/11700_2-hq.mp3',
-      4: props.sounds[0].previews['preview-lq-mp3'],
-    }).toDestination();
-  }, []);
+    player.current = new Tone.Player(props.soundUrl).toDestination();
+    // player.setLoopPoints(0.2, 0.3);
+    player.current.loop = true;
+    // Tone.loaded().then(() => {
+    //   player.current.start();
+    // });
+  }, [props.soundUrl]);
 
-  // const multiPlayer = new Tone.Players({
-  //   1: 'https://cdn.freesound.org/previews/166/166421_1661766-hq.mp3',
-  //   2: 'https://cdn.freesound.org/previews/11/11703_2-hq.mp3',
-  //   3: 'https://cdn.freesound.org/previews/11/11700_2-hq.mp3',
-  //   4: 'https://cdn.freesound.org/previews/437/437418_6086320-hq.mp3',
-  // }).toDestination();
-
-  async function startMultiPlayer() {
+  async function startPlayer() {
+    // player.current.start();
+    await Tone.loaded().then(() => {
+      player.current.start();
+    });
     await Tone.start();
-    multiPlayer.current.player('4').start();
-    // multiPlayer.current.player('2').start();
-    // multiPlayer.current.player('3').start();
-    // setStart((prevState) => !prevState);
   }
 
   function stopSounds() {
-    multiPlayer.current.stopAll();
+    player.current.stop();
   }
-
-  // async function allowSound() {
-  //   await Tone.start();
-  // }
 
   return (
     <>
-      <h1>try this</h1>
-      {/* <button onClick={allowSound}>allow</button> */}
-      <button onClick={startMultiPlayer}>play</button>
-      <br />
+      {/* <h3>try this</h3> */}
+      <button onClick={startPlayer}>play</button>
       <button onClick={stopSounds}>stop</button>
     </>
   );

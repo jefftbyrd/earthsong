@@ -6,8 +6,8 @@ import Freesound from './Freesound';
 
 // import Player from './Player';
 
-const initialCenter = [16.38389, 48.1944];
-const initialZoom = 10.12;
+const initialCenter = [4.510020088079064, 44.66199079784276];
+const initialZoom = 4.91;
 
 export default function MapTest() {
   const mapRef = useRef();
@@ -20,11 +20,10 @@ export default function MapTest() {
   const [zoom, setZoom] = useState(initialZoom);
 
   useEffect(() => {
-    mapboxgl.accessToken =
-      'pk.eyJ1IjoiamVmZnRieXJkIiwiYSI6ImNtMnVhMGVnajAwMDQya3NsZnppaGRoZGgifQ.h_ngiCgv-Xi_aQxRiRV6aQ';
+    mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_GENERIC_TOKEN;
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: 'mapbox://styles/jefftbyrd/cm2u9hrbc00al01padk1f48s8',
+      style: 'mapbox://styles/jefftbyrd/cm38mcin600jv01nw6mrq473m',
       center: center,
       zoom: zoom,
     });
