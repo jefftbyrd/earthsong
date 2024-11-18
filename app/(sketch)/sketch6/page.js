@@ -1,0 +1,116 @@
+'use client';
+import { NextReactP5Wrapper } from '@p5-wrapper/next';
+import * as Tone from 'tone';
+
+const sketch = (p5) => {
+  let wetMix;
+  let speed;
+  let meter;
+  let delay;
+  let player;
+  let playButton;
+  let reverb;
+  let revMix;
+  // let soundObj1;
+  let toneStart = 0;
+
+  p5.setup = () => {
+    player = new Tone.Player({
+      url: '/sounds/vox.wav',
+    }).toDestination();
+    meter = new Tone.Meter();
+    reverb = new Tone.Reverb();
+    player.connect(meter);
+    delay = new Tone.FeedbackDelay();
+    wetMix = p5.createSlider(0, 1, 1, 0);
+    wetMix.style('width', '200px');
+    wetMix.position(p5.width / 2, p5.height / 2 + 60);
+    revMix = p5.createSlider(0, 1, 1, 0);
+    revMix.style('width', '200px');
+    revMix.position(p5.width / 2, p5.height / 2 + 180);
+    player.connect(delay);
+    delay.connect(reverb);
+    reverb.toDestination();
+    speed = p5.createSlider(0, 4, 1, 0);
+    speed.style('width', '200px');
+    speed.position(p5.width / 2, p5.height / 2 + 120);
+    p5.createCanvas(p5.windowWidth, p5.windowHeight);
+    p5.colorMode(p5.HSB);
+    p5.textAlign(p5.LEFT);
+    // p5.textColor('white');
+    p5.noStroke();
+    p5.textOutput();
+    playButton = p5.createButton('play');
+    playButton.position(p5.width / 2, 40);
+    playButton.mousePressed(p5.play1);
+    playButton.style('color', 'deeppink');
+    // soundObj1 = p5.rect(30, 20, 55, 55);
+    // soundObj1.mousePressed(p5.play1);
+  };
+
+  p5.draw = () => {
+    delay.wet.value = wetMix.value();
+    reverb.wet.value = revMix.value();
+    player.playbackRate = speed.value();
+    const meterLevel = meter.getValue();
+    p5.background(0);
+    const circleHue = p5.map(p5.mouseX, 0, p5.width, 0, 360);
+    const diameter = p5.map(meterLevel, -50, -20, 20, 300);
+    p5.fill(circleHue, 80, 90);
+    p5.circle(p5.width / 2, p5.height / 2, diameter);
+    // soundObj1 = p5.rect(30, 20, 55, 55);
+    // soundObj1.move();
+    // soundObj1.rollover(p5.mouseX, p5.mouseY);
+
+    p5.text(`${meterLevel} --- ${diameter}`, p5.width / 2, 20);
+    p5.text(p5.int(wetMix.value() * 100) + '% delay', 30, 30);
+    p5.text(speed.value().toFixed(2) + ' speed', 30, 90);
+    p5.text(p5.int(revMix.value() * 100) + '% reverb', 30, 150);
+  };
+
+  // p5.mousePressed = async () => {
+  //   if (toneStart === 0) {
+  //     await Tone.start();
+  //     toneStart = 1;
+  //   }
+  //   if (player.state === 'started') {
+  //     player.stop();
+  //   } else {
+  //     player.start();
+  //   }
+  // };
+
+  // p5.move = () => {
+  //   this.x = this.x + p5.random(-2, 2);
+  //   this.y = this.y + p5.random(-2, 2);
+  // };
+
+  // p5.play1 = async () => {
+  //   if ((toneStart = 0)) {
+  //     await Tone.start();
+  //     toneStart = 1;
+  //   }
+  //   player.start();
+  //   started = !started;
+  //   if (!started) {
+  //     player.stop();
+  //   }
+  //   console.log('player state', player.state);
+  // };
+
+  p5.play1 = async () => {
+    if (toneStart === 0) {
+      await Tone.start();
+      toneStart = 1;
+    }
+    if (player.state === 'started') {
+      player.stop();
+    } else {
+      player.start();
+    }
+  };
+};
+
+export default function Sketch1() {
+  return <NextReactP5Wrapper sketch={sketch} />;
+}

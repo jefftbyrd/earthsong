@@ -32,7 +32,13 @@ const sketch = (p5) => {
     p5.text(`${meterLevel} --- ${diameter}`, p5.width / 2, 20);
   };
 
-  p5.play1 = () => {
+  let toneStart = 0;
+
+  p5.play1 = async () => {
+    if ((toneStart = 0)) {
+      await Tone.start();
+      toneStart = 1;
+    }
     player.start();
   };
 };

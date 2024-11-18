@@ -49,17 +49,17 @@ html {
   font-family: var(--font-avara);
 }
 
-body {
+/* body {
   padding: 20px;
-}
+} */
 
-#root {
+/* #root {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-}
+} */
 
 nav {
   display: grid;
@@ -131,4 +131,18 @@ form {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+button {
+  font-size: 24px;
+  padding: 20px 30px;
+  background-color: rgb(255, 57, 90);
+  letter-spacing: 0.2rem;
+  font-weight: bold;
+  border-radius: 15px;
+  border: 3px rgb(149, 0, 255) solid;
+}
+
+button:hover {
+  background-color: rgb(177, 232, 49);
 }

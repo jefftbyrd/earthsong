@@ -18,7 +18,7 @@ const avara = localFont({
   weight: '500',
 });
 const sligoil = localFont({
-  src: './fonts/Sligoil-Micro.woff',
+  src: './fonts/SligoilMicro.woff',
   variable: '--font-sligoil',
   weight: '500',
 });
@@ -34,13 +34,13 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${sligoil.variable}`}
       >
-        <header>
+        {/* <header>
           <nav>
             <Link href="/fs-map-tone">FS Map Tone</Link>
             <Link href="/register">Register</Link>
             <Link href="/login">Login</Link>
           </nav>
-        </header>
+        </header> */}
         {children}
       </body>
     </html>
