@@ -18,8 +18,7 @@ export default function MapTest() {
   const [zoom, setZoom] = useState(initialZoom);
 
   useEffect(() => {
-    mapboxgl.accessToken =
-      'pk.eyJ1IjoiamVmZnRieXJkIiwiYSI6ImNtMnVhMGVnajAwMDQya3NsZnppaGRoZGgifQ.h_ngiCgv-Xi_aQxRiRV6aQ';
+    mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_GENERIC_TOKEN;
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: 'mapbox://styles/jefftbyrd/cm2u9hrbc00al01padk1f48s8',

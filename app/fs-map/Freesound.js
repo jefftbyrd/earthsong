@@ -10,7 +10,7 @@ export default function Freesound(props) {
     const fetchData = async () => {
       const response = await fetch(
         // 'https://freesound.org/apiv2/search/text/?filter=%257B%2521geofilt%2520sfield%3Dgeotag%2520pt%3D48.2255%2C16.4137%2520d%3D10%257D%2520tag%3Afield-recording&fields=id%2Cpreviews%2Cname%2Cdescription%2Cgeotag%2Ctags&page_size=12  &token=TXgf9oo3ePNtOWZ7TkZ7zEJrwWDFi8UKCjoh2zTv',
-        `https://freesound.org/apiv2/search/text/?filter=%257B%2521geofilt%2520sfield%3Dgeotag%2520pt%3D${props.pin.lat}%2C${props.pin.lng}%2520d%3D10%257D%2520tag%3Afield-recording&fields=id%2Cpreviews%2Cname%2Cdescription%2Cgeotag%2Ctags&page_size=12  &token=TXgf9oo3ePNtOWZ7TkZ7zEJrwWDFi8UKCjoh2zTv`,
+        `https://freesound.org/apiv2/search/text/?filter=%257B%2521geofilt%2520sfield%3Dgeotag%2520pt%3D${props.pin.lat}%2C${props.pin.lng}%2520d%3D10%257D%2520tag%3Afield-recording&fields=id%2Cpreviews%2Cname%2Cdescription%2Cgeotag%2Ctags&page_size=12  &token=${process.env.NEXT_PUBLIC_FREESOUND_API_KEY}`,
       );
       const json = await response.json();
       setSounds(json);

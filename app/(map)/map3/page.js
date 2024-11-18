@@ -6,8 +6,7 @@ import ReactMapboxGl, { Feature, Layer, Marker } from 'react-mapbox-gl';
 
 export default function Map2() {
   const Map = ReactMapboxGl({
-    accessToken:
-      'pk.eyJ1IjoiamVmZnRieXJkIiwiYSI6ImNtMnVhMGVnajAwMDQya3NsZnppaGRoZGgifQ.h_ngiCgv-Xi_aQxRiRV6aQ',
+    accessToken: process.env.NEXT_PUBLIC_MAPBOX_GENERIC_TOKEN,
   });
   // const [lngLat, setLngLat] = useState();
   // const [newPlace, setNewPlace] = useState();

@@ -1,7 +1,6 @@
 import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
 
-mapboxgl.accessToken =
-  'pk.eyJ1IjoiamVmZnRieXJkIiwiYSI6ImNtMnQ1aHV2bzA1am8ya3I0N2J1eWdjZWsifQ.nO7VLi8QEAcJUjvA_NMRpA';
+mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_GENERIC_TOKEN;
 
 const map = new mapboxgl.Map({
   container: 'map', // container ID
