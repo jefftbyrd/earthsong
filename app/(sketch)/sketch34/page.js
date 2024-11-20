@@ -2,8 +2,8 @@
 import { NextReactP5Wrapper } from '@p5-wrapper/next';
 import React, { useEffect, useState } from 'react';
 import * as Tone from 'tone';
-
-// import styles from '../sketch.module.scss';
+import uniqolor from 'uniqolor';
+import styles from '../sketch.module.scss';
 
 const sketch = (p5) => {
   var col = {
@@ -14,59 +14,58 @@ const sketch = (p5) => {
   let shapes = [],
     sampleDraw,
     playRate;
-  let multiplayer;
+  let multiPlayer;
   let sounds2;
   let sounds3;
   let player;
   let shapesButton;
-  let name;
+  // let name;
   let radius = 150;
-  let bg;
-  // let soundsMap = new Map();
-  let soundsList = [];
+  // let bg;
 
   p5.updateWithProps = (props) => {
-    if (props.sounds) {
-      sounds2 = { ...props.sounds };
+    if (props.soundsColor) {
+      sounds2 = [...props.soundsColor];
     }
-    if (props.generate === true) {
-      p5.generateShapes();
+    if (props.generate && shapes.length < 1) {
+      generateShapes();
+    }
+    if (props.playerTarget) {
+      playSound2(props.playerTarget);
     }
   };
 
   p5.setup = () => {
-    // p5.colorMode(p5.HSB);
     p5.createCanvas(p5.windowWidth, p5.windowHeight);
-    multiplayer = new Tone.Players({ debug: true }).toDestination();
-    shapesButton = p5.createButton('Generate Shapes');
-    shapesButton.position(p5.width / 2, 40);
-    shapesButton.mousePressed(p5.generateShapes);
-    shapesButton.style('color', 'blue');
+    multiPlayer = new Tone.Players({ debug: true }).toDestination();
   };
 
-  p5.generateShapes = () => {
-    sounds2.results.map((sound) => {
+  function generateShapes() {
+    sounds2.map((sound) => {
       let x = p5.random(p5.width);
       let y = p5.random(p5.height);
       let r = p5.random(40, 200);
       let id = sound.id;
       let name = sound.name;
-      col.r = p5.random(0, 255);
-      col.g = p5.random(0, 255);
-      col.b = p5.random(0, 255);
-      bg = p5.color(col.r, col.g, col.b);
-      let b = new Shape(x, y, r, id, name, bg);
+      let bg = p5.color(sound.color.color);
+      let url = sound.previews['preview-lq-mp3'];
+      let b = new Shape(x, y, r, id, name, bg, url);
       shapes.push(b);
-      multiplayer.add(sound.id, sound.previews['preview-lq-mp3']);
-      // soundsMap.set(id, sound.id, sound.name, sound.description);
-      // let soundToAdd = {{sound.id}, sound.name, sound.description};
-      let newSound = new Sound(sound.id, sound.name, sound.description);
-      soundsList.push(newSound);
+      // generatePlayers();
+      // multiplayer.add(sound.id, sound.previews['preview-lq-mp3']);
+      // let newSound = new Sound(sound.id, sound.name, sound.description);
     });
-    console.log('multiplayer', multiplayer);
-    console.log('shapes', shapes);
-    console.log('soundsList', soundsList);
-  };
+    generatePlayers();
+  }
+
+  function generatePlayers() {
+    for (let i = 0; i < shapes.length; i++) {
+      // shapes[i].rollover(p5.mouseX, p5.mouseY);
+      // shapes[i].move();
+      shapes[i].players();
+      // shapes[i].showName();
+    }
+  }
 
   p5.draw = () => {
     p5.background(0);
@@ -90,16 +89,24 @@ const sketch = (p5) => {
     }
   };
 
-  class Sound {
-    constructor(id, name, description) {
-      this.id = id;
-      this.name = name;
-      this.description = description;
+  function playSound2(id) {
+    if (multiPlayer.player(id).state === 'started') {
+      multiPlayer.player(id).stop();
+    } else {
+      multiPlayer.player(id).start();
     }
   }
 
+  // class Sound {
+  //   constructor(id, name, description) {
+  //     this.id = id;
+  //     this.name = name;
+  //     this.description = description;
+  //   }
+  // }
+
   class Shape {
-    constructor(x, y, r, id, name, bg) {
+    constructor(x, y, r, id, name, bg, url) {
       this.x = x;
       this.y = y;
       this.r = r;
@@ -109,6 +116,7 @@ const sketch = (p5) => {
       this.id = id;
       this.name = name;
       this.bg = bg;
+      this.url = url;
     }
 
     rollover(px, py) {
@@ -124,7 +132,7 @@ const sketch = (p5) => {
           // we need this since mouseIsPressed will
           // happen continuously in the draw loop
           this.isClicked = true;
-          console.log(this.isClicked);
+          // console.log(this.isClicked);
           this.playSound(this.id);
         }
 
@@ -146,33 +154,32 @@ const sketch = (p5) => {
     }
 
     show() {
-      if (multiplayer.player(this.id).state === 'started') {
-        // p5.fill('green');
-        // shapes[i].move();
-        this.x = this.x + p5.random(-2, 2);
-        this.y = this.y + p5.random(-2, 2);
-      }
-      // console.log('this bg', this.bg);
       p5.fill(this.bg);
       p5.stroke(255);
       p5.strokeWeight(4);
       p5.ellipse(this.x, this.y, this.r * 2);
-      // console.log('player state', multiplayer.player(this.id).state);
     }
 
-    showName() {
-      name = p5.text(this.name, this.x, this.y);
-      name.stroke(0);
-      // name.fill('yellow');
-      name.textAlign(p5.CENTER, p5.CENTER);
-      name.textSize(22);
+    players() {
+      // multiPlayer.add(this.id, this.url);
+      multiPlayer.add(this.id, this.url, () => {
+        console.log(`${this.id} loaded`);
+        // players.player('gong').start();
+      });
+      this.meter = new Tone.Meter({ normalRange: true, smoothing: 0.9 });
+      this.channel = new Tone.Channel();
+      this.reverb = new Tone.Reverb();
+      multiPlayer.player(this.id).connect(this.meter);
+      multiPlayer.player(this.id).connect(this.channel);
+      this.channel.connect(this.reverb);
+      this.reverb.toDestination();
     }
 
     playSound(id) {
-      if (multiplayer.player(id).state === 'started') {
-        multiplayer.player(id).stop();
+      if (multiPlayer.player(id).state === 'started') {
+        multiPlayer.player(id).stop();
       } else {
-        multiplayer.player(id).start();
+        multiPlayer.player(id).start();
       }
     }
   }
@@ -210,15 +217,16 @@ const sketch = (p5) => {
     // Prevent default functionality.
     return false;
   };
+
+  console.log('multiPlayer', multiPlayer);
 };
 
-export const soundsListExport = sketch.soundsList;
-console.log('soundsListExport', soundsListExport);
-
-export default function Sketch11() {
+export default function Sketch33() {
   const [isLoading, setIsLoading] = useState(true);
   const [sounds, setSounds] = useState();
   const [generate, setGenerate] = useState(false);
+  const [playerTarget, setPlayerTarget] = useState();
+  const [clicked, setClicked] = useState();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -238,11 +246,44 @@ export default function Sketch11() {
     return 'Loading...';
   }
 
+  const soundsColor = sounds.results.map((sound) => ({
+    ...sound,
+    color: uniqolor.random(),
+  }));
+
+  const handleGenerate = () => {
+    if (!generate) {
+      setGenerate(true);
+    }
+  };
+
   return (
     <>
-      <button onClick={() => setGenerate(true)}>Generate test</button>
-      {console.log('generate', generate)}
-      <NextReactP5Wrapper sketch={sketch} sounds={sounds} generate={generate} />
+      <div className={styles.statusBar}>
+        {soundsColor.map((sound) => {
+          return (
+            <div
+              key={`soundId-${sound.id}`}
+              style={{ backgroundColor: sound.color.color }}
+              onClick={() => {
+                setPlayerTarget(sound.id);
+                setClicked(!clicked);
+              }}
+            >
+              <h2>{sound.name}</h2>
+            </div>
+          );
+        })}
+        <button onClick={handleGenerate}>GENERATE!</button>
+        {console.log('playerTarget', playerTarget)}
+      </div>
+
+      <NextReactP5Wrapper
+        sketch={sketch}
+        soundsColor={soundsColor}
+        generate={generate}
+        playerTarget={playerTarget}
+      />
     </>
   );
 }

@@ -2,21 +2,21 @@ import './globals.css';
 import localFont from 'next/font/local';
 import Link from 'next/link';
 
-const geistSans = localFont({
-  src: './fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900',
-});
-const geistMono = localFont({
-  src: './fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900',
-});
-const avara = localFont({
-  src: './fonts/Avara-Bold.woff',
-  variable: '--font-avara',
-  weight: '500',
-});
+// const geistSans = localFont({
+//   src: './fonts/GeistVF.woff',
+//   variable: '--font-geist-sans',
+//   weight: '100 900',
+// });
+// const geistMono = localFont({
+//   src: './fonts/GeistMonoVF.woff',
+//   variable: '--font-geist-mono',
+//   weight: '100 900',
+// });
+// const avara = localFont({
+//   src: './fonts/Avara-Bold.woff',
+//   variable: '--font-avara',
+//   weight: '500',
+// });
 const sligoil = localFont({
   src: './fonts/SligoilMicro.woff',
   variable: '--font-sligoil',
@@ -32,7 +32,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${sligoil.variable}`}
+        // className={`${geistSans.variable} ${geistMono.variable} ${sligoil.variable}`}
+        className={`${sligoil.variable}`}
       >
         {/* <header>
           <nav>

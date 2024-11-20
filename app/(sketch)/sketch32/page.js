@@ -2,6 +2,7 @@
 import { NextReactP5Wrapper } from '@p5-wrapper/next';
 import React, { useEffect, useState } from 'react';
 import * as Tone from 'tone';
+import uniqolor from 'uniqolor';
 
 // import styles from '../sketch.module.scss';
 
@@ -45,7 +46,7 @@ const sketch = (p5) => {
   };
 
   p5.generateShapes = () => {
-    sounds2.results.map((sound) => {
+    sounds2.map((sound) => {
       let x = p5.random(p5.width);
       let y = p5.random(p5.height);
       let r = p5.random(40, 200);
@@ -212,8 +213,8 @@ const sketch = (p5) => {
   };
 };
 
-export const soundsListExport = sketch.soundsList;
-console.log('soundsListExport', soundsListExport);
+// export const soundsListExport = sketch.soundsList;
+// console.log('soundsListExport', soundsListExport);
 
 export default function Sketch11() {
   const [isLoading, setIsLoading] = useState(true);
@@ -238,11 +239,40 @@ export default function Sketch11() {
     return 'Loading...';
   }
 
+  // const soundsColor = sounds.results.map((sound) => ({
+  //   ...sound,
+  //   color: uniqolor.random(),
+  // }));
+  // console.log('soundsColor', soundsColor);
+
   return (
     <>
+      {/* {soundsColor.slice(0, 3).map((sound) => {
+        return (
+          <div key={`soundId-${sound.id}`}>
+            <h2>{sound.name}</h2>
+            <h3>{sound.username}</h3>
+            <h3>{sound.description}</h3>
+          </div>
+        );
+      })} */}
       <button onClick={() => setGenerate(true)}>Generate test</button>
-      {console.log('generate', generate)}
       <NextReactP5Wrapper sketch={sketch} sounds={sounds} generate={generate} />
     </>
   );
 }
+
+/* <div className="">
+  {/* sounds2.results.map((sound) => */
+
+//   {sounds.results.map((sound) => {
+//     return (
+//       <div key={`soundId-${sound.id}`}>
+//           <img src={`viruses/${virus.image}`} alt={virus.virusName} />
+//           <h2>{virus.virusName}</h2>
+//           {virus.tagline ? <h3>({virus.tagline})</h3> : null}
+//           <div className="itemPrice">€ {Number(virus.price).toFixed(2)}</div>
+//       </div>
+//     );
+//   })}
+// </div>; */}

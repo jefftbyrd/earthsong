@@ -8,3 +8,13 @@
   // border-radius: 300px;
   border-radius: 100%;
 }
+
+.statusBar {
+  display: grid;
+  gap: 0px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+
+  // div {
+  //   display: grid;
+  // }
+}
