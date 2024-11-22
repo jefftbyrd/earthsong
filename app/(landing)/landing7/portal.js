@@ -5,7 +5,7 @@ import * as Tone from 'tone';
 import uniqolor from 'uniqolor';
 import styles from '../sketch.module.scss';
 
-const sketch = (p5) => {
+export const portal = (p5) => {
   var col = {
     r: 0,
     g: 0,
@@ -312,7 +312,7 @@ export default function Sketch33() {
       </div>
 
       <NextReactP5Wrapper
-        sketch={sketch}
+        sketch={portal}
         soundsColor={soundsColor}
         generate={generate}
         playerTarget={playerTarget}

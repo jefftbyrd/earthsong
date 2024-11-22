@@ -6,6 +6,26 @@ import uniqolor from 'uniqolor';
 import styles from '../sketch.module.scss';
 
 const sketch = (p5) => {
+  let w;
+  let h;
+  let x_step = 30;
+  let y_step = 20;
+
+  // constant for increasing or decreaseing the starting point of mountains
+  const distance_variance_factor = 270;
+
+  // scale mountains vertically
+  const scale_factor = 1.8;
+
+  // starting point from center
+  const start = 30;
+
+  // increment y_off for different noise values
+  const y_factor = 0.4;
+  let y_off = 0;
+
+  const nrStars = 200;
+
   var col = {
     r: 0,
     g: 0,
@@ -68,19 +88,18 @@ const sketch = (p5) => {
   }
 
   p5.draw = () => {
+    // p5.colorMode(p5.HSB);
     p5.background(0);
-    p5.line(0, 200, p5.windowWidth, 200);
+
+    // p5.line(0, 200, p5.windowWidth, 200);
     p5.stroke('lightblue');
 
     for (let i = 0; i < 48; i++) {
       let step = p5.windowWidth / 48;
-      p5.line(
-        step * i,
-        200,
-        step * i * 10 - p5.windowWidth * 4,
-        p5.windowWidth,
-      );
+      p5.line(step * i, 0, step * i * 10 - p5.windowWidth * 4, p5.windowWidth);
     }
+    // p5.line(0, 200, p5.windowWidth, 200);
+    // p5.stroke('lightblue');
 
     for (let i = 0; i < shapes.length; i++) {
       shapes[i].rollover(p5.mouseX, p5.mouseY);
@@ -89,6 +108,8 @@ const sketch = (p5) => {
       shapes[i].playerControls();
       // shapes[i].showName();
     }
+
+    // p5.noLoop();
   };
 
   function playSound2(id) {
@@ -264,7 +285,7 @@ export default function Sketch33() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `https://freesound.org/apiv2/search/text/?filter=%257B%2521geofilt%2520sfield%3Dgeotag%2520pt%3D41.7326%2C-4.7437%2520d%3D25%257D%2520tag%3Afield-recording&fields=previews%2Cname%2Cdescription%2Cusername%2Cid&page_size=5  &token=${process.env.NEXT_PUBLIC_FREESOUND_API_KEY}`,
+        `https://freesound.org/apiv2/search/text/?filter=%257B%2521geofilt%2520sfield%3Dgeotag%2520pt%3D41.8690%2C12.4498%2520d%3D25%257D%2520tag%3Afield-recording&fields=previews%2Cname%2Cdescription%2Cusername%2Cid&page_size=5  &token=${process.env.NEXT_PUBLIC_FREESOUND_API_KEY}`,
       );
       const json = await response.json();
       setSounds(json);
@@ -278,6 +299,17 @@ export default function Sketch33() {
     // early return
     return 'Loading...';
   }
+
+  // function colorGen() {
+  //   if (soundsColor.length < 1) {}
+  // }
+
+  // const soundsColor = () => {
+  //   sounds.results.map((sound) => ({
+  //     ...sound,
+  //     color: uniqolor.random(),
+  //   }));
+  // };
 
   const soundsColor = sounds.results.map((sound) => ({
     ...sound,
@@ -293,6 +325,7 @@ export default function Sketch33() {
   return (
     <>
       <div className={styles.statusBar}>
+        {/* {soundsColor.length < 1 ? soundsColor() : soundsColor} */}
         {soundsColor.map((sound) => {
           return (
             <div
