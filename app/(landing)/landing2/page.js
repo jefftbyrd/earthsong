@@ -6,8 +6,9 @@ import mapboxgl from 'mapbox-gl';
 import { motion } from 'motion/react';
 // import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import { sketch } from './clouds';
+import { clouds } from './clouds';
 import styles from './landing.module.scss';
+import { occult } from './occult';
 
 const initialCenter = [4.510020088079064, 44.66199079784276];
 const initialZoom = 2.14;
@@ -103,6 +104,10 @@ export default function MapTest() {
         <div id="map-container" ref={mapContainerRef} />
       </motion.div>
 
+      {/* <div className={styles.occult}>
+        <NextReactP5Wrapper sketch={occult} />
+      </div> */}
+
       <motion.div
         className={styles.noClick}
         animate={{
@@ -111,7 +116,7 @@ export default function MapTest() {
           transition: { duration: 4, times: [0, 0.9, 1] },
         }}
       >
-        <NextReactP5Wrapper sketch={sketch} />
+        <NextReactP5Wrapper sketch={clouds} />
       </motion.div>
 
       {/* <div>{pin.lat ? <Freesound pin={pin} fetch={fetch} /> : null}</div> */}

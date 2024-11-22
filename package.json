@@ -17,6 +17,7 @@
     "bcrypt": "^5.1.1",
     "dotenv-safe": "^9.1.0",
     "mapbox-gl": "^3.7.0",
+    "motion": "^11.11.17",
     "next": "14.2.16",
     "p5.sound": "^0.1.0",
     "postgres": "^3.4.5",

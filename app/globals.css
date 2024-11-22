@@ -10,18 +10,38 @@
   }
 } */
 
-/* html,
+html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-} */
+}
 
 body {
   /* color: var(--foreground);
   background: var(--background); */
-  font-family: var(--font-sligoil);
+  font-family: var(--font-basteleurM);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-color: black; */
+  color: white;
+  background: rgb(43, 23, 56);
+  background: radial-gradient(
+    circle,
+    rgba(43, 23, 56, 1) 0%,
+    rgba(18, 22, 52, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+h1 {
+  font-size: 15vw;
+  text-transform: uppercase;
+  color: white;
+}
+
+h2 {
+  font-size: 3vw;
+  /* color: white; */
 }
 
 * {
@@ -46,7 +66,7 @@ h2 {
 }  */
 
 html {
-  font-family: var(--font-avara);
+  /* font-family: var(--font-avara); */
 }
 
 /* body {
@@ -140,7 +160,7 @@ form {
   gap: 20px;
 }
 
-button {
+/* button {
   font-size: 24px;
   padding: 20px 30px;
   background-color: rgb(255, 57, 90);
@@ -152,20 +172,15 @@ button {
 
 button:hover {
   background-color: rgb(177, 232, 49);
-}
+} */
 
-.react-p5-wrapper {
+/* .react-p5-wrapper {
   pointer-events: none;
-  opacity: 0.4;
-}
+} */
 
-.logo {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-  z-index: 1000;
-  pointer-events: none;
+.box {
+  /* width: 200px;
+  height: 200px; */
+  /* border-radius: 50%; */
+  /* background: var(--accent); */
 }
