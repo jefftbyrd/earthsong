@@ -1,0 +1,24 @@
+.title {
+  padding-left: 1.5rem;
+}
+
+.snapshots {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  padding: 1.5rem;
+  gap: 1rem;
+
+  li {
+    padding: 0.5rem;
+    list-style: none;
+  }
+}
+
+.snapshotsForm {
+  padding: 1rem;
+
+  > div {
+    position: sticky;
+    top: 0;
+  }
+}

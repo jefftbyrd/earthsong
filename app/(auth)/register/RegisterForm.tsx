@@ -33,13 +33,17 @@ export default function RegisterForm(props: Props) {
       return;
     }
 
-    router.push(
-      getSafeReturnToPath(props.returnTo) || `profile/${data.user.username}`,
-    );
+    // router.push(`/profile/${data.user.username}`);
 
+    // This is not a secure returnTo
     // if (props.returnTo) {
-    //   router.push(props.returnTo || `profile/${data.user.username}`);
+    //   console.log('Checks Return to: ', props.returnTo);
+    //   router.push(props.returnTo || `/profile/${data.user.username}`);
     // }
+
+    router.push(
+      getSafeReturnToPath(props.returnTo) || `/profile/${data.user.username}`,
+    );
 
     router.refresh();
   }
@@ -54,6 +58,7 @@ export default function RegisterForm(props: Props) {
             onChange={(event) => setUsername(event.currentTarget.value)}
           />
         </label>
+
         <label>
           Password
           <input

@@ -33,8 +33,16 @@ export default function LoginForm(props: Props) {
       return;
     }
 
+    // router.push(`/profile/${data.user.username}`);
+
+    // This is not a secure returnTo
+    // if (props.returnTo) {
+    //   console.log('Checks Return to: ', props.returnTo);
+    //   router.push(props.returnTo || `/profile/${data.user.username}`);
+    // }
+
     router.push(
-      getSafeReturnToPath(props.returnTo) || `profile/${data.user.username}`,
+      getSafeReturnToPath(props.returnTo) || `/profile/${data.user.username}`,
     );
 
     router.refresh();
@@ -50,6 +58,7 @@ export default function LoginForm(props: Props) {
             onChange={(event) => setUsername(event.currentTarget.value)}
           />
         </label>
+
         <label>
           Password
           <input
@@ -59,7 +68,7 @@ export default function LoginForm(props: Props) {
           />
         </label>
 
-        <button>Login</button>
+        <button>login</button>
 
         {errors.map((error) => (
           <div className="error" key={`error-${error.message}`}>

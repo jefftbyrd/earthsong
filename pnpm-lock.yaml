@@ -36,7 +36,7 @@ importers:
         specifier: ^0.1.0
         version: 0.1.0
       postgres:
-        specifier: ^3.4.5
+        specifier: ^3.4.4
         version: 3.4.5
       react:
         specifier: 19.0.0-rc-5d19e1c8-20240923
@@ -45,13 +45,19 @@ importers:
         specifier: 19.0.0-rc-5d19e1c8-20240923
         version: 19.0.0-rc-5d19e1c8-20240923(react@19.0.0-rc-5d19e1c8-20240923)
       sass:
-        specifier: ^1.80.4
+        specifier: ^1.79.4
         version: 1.80.4
+      secure-json-parse:
+        specifier: ^2.7.0
+        version: 2.7.0
+      server-only:
+        specifier: ^0.0.1
+        version: 0.0.1
       tone:
         specifier: ^15.0.4
         version: 15.0.4
       tsx:
-        specifier: ^4.19.2
+        specifier: ^4.19.1
         version: 4.19.2
       uniqolor:
         specifier: ^1.1.1
@@ -66,8 +72,11 @@ importers:
       '@types/bcrypt':
         specifier: ^5.0.2
         version: 5.0.2
+      '@types/dotenv-safe':
+        specifier: ^8.1.6
+        version: 8.1.6
       '@types/node':
-        specifier: ^22.8.2
+        specifier: ^22.7.4
         version: 22.8.2
       '@types/p5':
         specifier: ^1.7.6
@@ -79,10 +88,10 @@ importers:
         specifier: ^18.3.1
         version: 18.3.1
       eslint:
-        specifier: ^9.13.0
+        specifier: ^9.11.1
         version: 9.13.0
       eslint-config-upleveled:
-        specifier: ^8.11.3
+        specifier: ^8.8.0
         version: 8.11.3(@babel/core@7.26.0)(@types/eslint@9.6.1)(@types/node@22.8.2)(@types/react-dom@18.3.1)(@types/react@18.3.12)(eslint@9.13.0)(globals@15.11.0)(typescript@5.6.3)
       libpg-query:
         specifier: 16.2.0
@@ -97,13 +106,13 @@ importers:
         specifier: ^0.18.1
         version: 0.18.1(prettier@3.3.3)
       stylelint:
-        specifier: ^16.10.0
+        specifier: ^16.9.0
         version: 16.10.0(typescript@5.6.3)
       stylelint-config-upleveled:
         specifier: ^1.1.5
         version: 1.1.5(postcss@8.4.47)(stylelint-scss@6.8.1(stylelint@16.10.0(typescript@5.6.3)))(stylelint@16.10.0(typescript@5.6.3))
       typescript:
-        specifier: ^5.6.3
+        specifier: ^5.6.2
         version: 5.6.3
 
 packages:
@@ -727,6 +736,9 @@ packages:
   '@types/bcrypt@5.0.2':
     resolution: {integrity: sha512-6atioO8Y75fNcbmj0G7UjI9lXN2pQ/IGJ2FWT4a/btd0Lk9lQalHLKhkgKVZ3r+spnmWUKfbMi1GEe9wyHQfNQ==}
 
+  '@types/dotenv-safe@8.1.6':
+    resolution: {integrity: sha512-ftZXu3WGT6ALq+f98IX2gWriGMPds+0ku5h8kZewNpY47ua+Z+XNcin9apZ2kVd4B9LV1vMfUOyDf1/hhreR0Q==}
+
   '@types/eslint@9.6.1':
     resolution: {integrity: sha512-FXx2pKgId/WyYo2jXw63kk7/+TY7u7AziEJxJAnSFzHlqTAS3Ync6SvgYAN/k4/PQpnnVuzoMuVnByKK2qp0ag==}
 
@@ -1322,6 +1334,10 @@ packages:
   dotenv@16.4.5:
     resolution: {integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==}
     engines: {node: '>=12'}
+
+  dotenv@8.6.0:
+    resolution: {integrity: sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g==}
+    engines: {node: '>=10'}
 
   earcut@3.0.0:
     resolution: {integrity: sha512-41Fs7Q/PLq1SDbqjsgcY7GA42T0jvaCNGXgGtsNdvg+Yv8eIu06bxv4/PoREkZ9nMDNwnUSG9OFB9+yv8eKhDg==}
@@ -2886,6 +2902,9 @@ packages:
   scheduler@0.25.0-rc-5d19e1c8-20240923:
     resolution: {integrity: sha512-lyXuqeq6jwl7PPmOBJcqrfbm5qczKdgDTdIc0JYq6nJq0CATvNBSP95s+8TqPwcesmE3t+0jh9W1w6WOAtR7Aw==}
 
+  secure-json-parse@2.7.0:
+    resolution: {integrity: sha512-6aU+Rwsezw7VR8/nyvKTx8QpWH9FrcYiXXlqC4z5d5XQBDRqtbfsRjnwGyqbi3gddNtWHuEk9OANUotL26qKUw==}
+
   semver@5.7.2:
     resolution: {integrity: sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==}
     hasBin: true
@@ -2910,6 +2929,9 @@ packages:
   serve-static@1.16.2:
     resolution: {integrity: sha512-VqpjJZKadQB/PEbEwvFdO43Ax5dFBZ2UECszz8bQ7pi7wt//PWe1P6MN7eCnjsatYtBT6EuiClbjSWP2WrIoTw==}
     engines: {node: '>= 0.8.0'}
+
+  server-only@0.0.1:
+    resolution: {integrity: sha512-qepMx2JxAa5jjfzxG79yPPq+8BuFToHd1hm7kI+Z4zAq1ftQiP7HcxMhDDItrbtwVeLg/cY2JnKnrcFkmiswNA==}
 
   set-blocking@2.0.0:
     resolution: {integrity: sha512-KiKBS8AnWGEyLzofFfmvKwpdPzqiy16LvQfK3yv/fVH7Bj13/wl3JSR1J+rfgRE9q7xUJK4qvgS8raSOeLUehw==}
@@ -4058,6 +4080,11 @@ snapshots:
     dependencies:
       '@types/node': 22.8.2
 
+  '@types/dotenv-safe@8.1.6':
+    dependencies:
+      '@types/node': 22.8.2
+      dotenv: 8.6.0
+
   '@types/eslint@9.6.1':
     dependencies:
       '@types/estree': 1.0.6
@@ -4690,6 +4717,8 @@ snapshots:
 
   dotenv@16.4.5: {}
 
+  dotenv@8.6.0: {}
+
   earcut@3.0.0: {}
 
   eastasianwidth@0.2.0: {}
@@ -4946,7 +4975,7 @@ snapshots:
       minimatch: 9.0.5
       semver: 7.6.3
       stable-hash: 0.0.4
-      tslib: 2.8.0
+      tslib: 2.8.1
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -6478,6 +6507,8 @@ snapshots:
 
   scheduler@0.25.0-rc-5d19e1c8-20240923: {}
 
+  secure-json-parse@2.7.0: {}
+
   semver@5.7.2: {}
 
   semver@6.3.1: {}
@@ -6512,6 +6543,8 @@ snapshots:
       send: 0.19.0
     transitivePeerDependencies:
       - supports-color
+
+  server-only@0.0.1: {}
 
   set-blocking@2.0.0: {}
 
