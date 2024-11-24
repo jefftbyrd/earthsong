@@ -88,22 +88,46 @@ export default function Map(props) {
           </motion.div>
         </motion.div>
       )}
+
       {pin.lat && !enterPortal ? (
+        // Announce the chosen location
         <div className={styles.projection}>
-          {/* <button
-            className={styles.projectionStart}
-            onClick={() => {
-              setEnterPortal(true);
-              props.portal();
+          <motion.h2
+            animate={{
+              opacity: [0, 1],
+              transition: { duration: 3, times: [0, 1] },
             }}
           >
-            The button */}
-          <h2>
-            <a href="/sketch50">Initiate sonic projection. Take me there.</a>
-          </h2>
-          {/* </button> */}
+            You chose {pin.lat.toFixed(4)}, {pin.lng.toFixed(4)}
+          </motion.h2>
+
+          {/* Click to initiate sonic projection */}
+          <motion.div
+            animate={{
+              opacity: [0, 0, 1],
+              transition: { duration: 3, times: [0, 0.5, 1] },
+            }}
+          >
+            <motion.button
+              className={styles.projectionStart}
+              onClick={() => {
+                props.openPortal();
+              }}
+              animate={{
+                color: [
+                  'rgb(255, 0, 89)',
+                  'rgb(255, 230, 0)',
+                  'rgb(255, 0, 89)',
+                ],
+              }}
+              transition={{ repeat: Infinity, duration: 3 }}
+            >
+              Initiate sonic projection. Take me there.
+            </motion.button>
+          </motion.div>
         </div>
       ) : null}
+
       <div id="map-container" ref={mapContainerRef} />
       <div>{pin.lat ? <Freesound pin={pin} fetch={fetch} /> : null}</div>
     </>
