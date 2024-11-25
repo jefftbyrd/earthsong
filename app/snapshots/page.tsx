@@ -5,7 +5,7 @@ import { getCookie } from '../../util/cookies';
 import SnapshotsForm from './SnapshotForm';
 
 export default async function SnapshotPage() {
-  // Task: Restrict access to the notes page and only display notes belonging to the current logged in user
+  // Task: Restrict access to the snapshots page and only display snapshots belonging to the current logged in user
   // 1. Check if the sessionToken cookie exists
   const sessionTokenCookie = await getCookie('sessionToken');
 

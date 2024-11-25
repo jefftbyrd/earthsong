@@ -39,7 +39,11 @@ export default function Portal(props) {
             .color.replace(')', ', 1)')
             .replace('rgb', 'rgba'),
           url: sound.previews['preview-lq-mp3'],
-          // sound.previews, ...sound => ...sound,
+          name: sound.name
+            .replaceAll('.wav', '')
+            .replaceAll('.mp3', '')
+            .replaceAll('.WAV', '')
+            .replaceAll('.MP3', ''),
         }))
         .map(({ previews, ...sound }) => sound);
       setSoundsColor(soundsWithColor);

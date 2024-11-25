@@ -33,9 +33,7 @@ export default function SnapshotsForm(props: Props) {
             <ul>
               {props.snapshots.map((snapshot) => (
                 <li key={`snapshots-${snapshot.id}`}>
-                  <Link href={`/snapshots/${snapshot.id}`}>
-                    {snapshot.title}
-                  </Link>
+                  <Link href={`/snapshots/${snapshot.id}`}>{snapshot.id}</Link>
                 </li>
               ))}
             </ul>

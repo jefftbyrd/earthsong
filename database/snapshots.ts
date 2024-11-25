@@ -38,18 +38,13 @@ export const getSnapshot = cache(
 );
 
 export const createSnapshot = cache(
-  async (
-    sessionToken: Session['token'],
-    title: string,
-    textContent: string,
-  ) => {
+  async (sessionToken: Session['token'], sounds: string) => {
     const [snapshot] = await sql<Snapshot[]>`
       INSERT INTO
-        snapshots (user_id, title, text_content) (
+        snapshots (user_id, sounds) (
           SELECT
             sessions.user_id,
-            ${title},
-            ${textContent}
+            ${sounds}
           FROM
             sessions
           WHERE

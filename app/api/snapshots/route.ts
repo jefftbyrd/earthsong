@@ -8,7 +8,7 @@ import { getCookie } from '../../../util/cookies';
 
 export type CreateSnapshotResponseBodyPost =
   | {
-      snapshot: { textContent: Snapshot['textContent'] };
+      snapshot: { sounds: Snapshot['sounds'] };
     }
   | {
       error: string;
@@ -22,16 +22,16 @@ export async function POST(
   const body = await request.json();
 
   // 2. Validate snapshots data with zod
-  const result = snapshotSchema.safeParse(body);
+  // const result = snapshotSchema.safeParse(body);
 
-  if (!result.success) {
-    return NextResponse.json(
-      { error: 'Request does not contain snapshot object' },
-      {
-        status: 400,
-      },
-    );
-  }
+  // if (!result.success) {
+  //   return NextResponse.json(
+  //     { error: 'Request does not contain snapshot object' },
+  //     {
+  //       status: 400,
+  //     },
+  //   );
+  // }
 
   // 3. Get the token from the cookie
   const sessionTokenCookie = await getCookie('sessionToken');
@@ -41,8 +41,8 @@ export async function POST(
     sessionTokenCookie &&
     (await createSnapshot(
       sessionTokenCookie,
-      result.data.title,
-      result.data.textContent,
+      // result.data.title,
+      body,
     ));
 
   // 5. If the snapshot creation fails, return an error
@@ -55,8 +55,8 @@ export async function POST(
     );
   }
 
-  // 6. Return the text content of the note
+  // 6. Return the text content of the snapshot
   return NextResponse.json({
-    snapshot: { textContent: newSnapshot.textContent },
+    snapshot: { sounds: newSnapshot.sounds },
   });
 }

@@ -30,8 +30,11 @@ export default function Portal(props) {
   useEffect(() => {
     const addColor = async () => {
       const response = await props.sounds;
-      const soundsWithColor = response.results
-        .slice(0, 5)
+      const soundsShuffled = response.results
+        .sort(() => 0.5 - Math.random()) // Shuffle array
+        .slice(0, 5); // Select the first 5 items
+      const soundsWithColor = soundsShuffled
+        // .slice(0, 5)
         .map((sound) => ({
           ...sound,
           color: uniqolor
@@ -39,7 +42,14 @@ export default function Portal(props) {
             .color.replace(')', ', 1)')
             .replace('rgb', 'rgba'),
           url: sound.previews['preview-lq-mp3'],
-          // sound.previews, ...sound => ...sound,
+          name: sound.name
+            .replaceAll('.wav', '')
+            .replaceAll('.mp3', '')
+            .replaceAll('.WAV', '')
+            .replaceAll('.MP3', '')
+            .replaceAll('.m4a', '')
+            .replaceAll('_', ' ')
+            .replaceAll('-', ' '),
         }))
         .map(({ previews, ...sound }) => sound);
       setSoundsColor(soundsWithColor);
@@ -77,8 +87,7 @@ export default function Portal(props) {
         <SaveSnapshot sounds={soundsColor} />
       </div>
 
-      {/* {console.log('soundsColor', soundsColor)}
-      {console.log('dataFromChild in Portal return', dataFromChild)} */}
+      {console.log('soundsColor', soundsColor)}
 
       {soundsColor.length > 0 ? (
         <NextReactP5Wrapper
