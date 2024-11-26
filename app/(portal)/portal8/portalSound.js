@@ -14,6 +14,7 @@ export const portalSound = (p5) => {
   let waveforms = [];
   let waveform;
   let reversed = false;
+  let visualizer;
 
   var col = {
     r: 0,
@@ -86,27 +87,39 @@ export const portalSound = (p5) => {
 
     // console.log('sounds2 in draw', sounds2);
 
-    let frequencyData = waveform.getValue();
-    p5.beginShape();
-    for (let i = 0; i < frequencyData.length; i++) {
-      let y = p5.map(frequencyData[i], -1, 1, p5.height / 2, 0) - 100;
-      p5.vertex(i * scl, y);
-    }
-    p5.endShape();
+    // p5.stroke(102, 219, 255);
+    let vanishingStroke = p5.color('lightblue');
+    vanishingStroke.setAlpha(200);
+    p5.stroke(vanishingStroke);
 
-    p5.line(0, 200, p5.windowWidth, 200);
-    p5.stroke('lightblue');
+    let frequencyData = waveform.getValue();
+    let visualizerFill = p5.color(115, 64, 50);
+    visualizerFill.setAlpha(255);
+    p5.fill(visualizerFill);
+    // p5.noStroke(visualizer);
+    console.log('frequencyData', frequencyData[0]);
+    if (frequencyData[0] > 0 || frequencyData[0] < 0) {
+      let visualizer = p5.beginShape();
+      for (let i = 0; i < frequencyData.length; i++) {
+        let y = p5.map(frequencyData[i], -1, 1, p5.height / 2, 0) - 100;
+        p5.vertex(i * scl, y);
+      }
+      p5.endShape();
+    }
+
+    if (frequencyData[0] === 0) {
+      p5.line(0, 185, p5.windowWidth, 185);
+    }
 
     for (let i = 0; i < 48; i++) {
       let step = p5.windowWidth / 48;
       p5.line(
         step * i,
-        200,
+        p5.map(frequencyData[i], -1, 1, p5.height / 6, 0) + 100,
         step * i * 10 - p5.windowWidth * 4,
         p5.windowWidth,
       );
     }
-
     // let frequencyData = analyzer.getValue();
 
     // p5.beginShape();
@@ -177,23 +190,24 @@ export const portalSound = (p5) => {
       if (multiPlayer.player(this.id).loaded) {
         if (multiPlayer.player(this.id).state === 'started') {
           // p5.fill(this.bg);
+          let playingFill = p5.color(this.bg);
+          // playingFill.setAlpha(p5.map(this.y, 0, p5.windowHeight, 200, 256));
+          p5.fill(playingFill);
+
           p5.select(`.s${this.id}`).attribute(
             'style',
             `background-color:${this.bg};opacity: 1;`,
           );
         } else {
           // p5.fill(this.bg.replace('1)', '0.75)'));
+          let c = p5.color(this.bg);
+          c.setAlpha(90);
+          p5.fill(c);
           p5.select(`.s${this.id}`).attribute(
             'style',
-            `background-color:${this.bg};opacity: 0.5;`,
+            `background-color:${this.bg}; opacity: 0.5;`,
           );
         }
-      } else if (!multiPlayer.player(this.id).loaded) {
-        p5.fill(this.bg.replace('1)', '0)'));
-        p5.select(`.s${this.id}`).attribute(
-          'style',
-          `background-color:${this.bg.replace('1)', '0)')}`,
-        );
       }
       this.diameter =
         p5.map(this.y, 0, p5.windowHeight, 50, 800) + this.meterMap;

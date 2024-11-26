@@ -177,23 +177,24 @@ export const portalSound = (p5) => {
       if (multiPlayer.player(this.id).loaded) {
         if (multiPlayer.player(this.id).state === 'started') {
           // p5.fill(this.bg);
+          let playingFill = p5.color(this.bg);
+          // playingFill.setAlpha(p5.map(this.y, 0, p5.windowHeight, 200, 256));
+          p5.fill(playingFill);
+
           p5.select(`.s${this.id}`).attribute(
             'style',
             `background-color:${this.bg};opacity: 1;`,
           );
         } else {
           // p5.fill(this.bg.replace('1)', '0.75)'));
+          let c = p5.color(this.bg);
+          c.setAlpha(90);
+          p5.fill(c);
           p5.select(`.s${this.id}`).attribute(
             'style',
-            `background-color:${this.bg};opacity: 0.5;`,
+            `background-color:${this.bg}; opacity: 0.5;`,
           );
         }
-      } else if (!multiPlayer.player(this.id).loaded) {
-        p5.fill(this.bg.replace('1)', '0)'));
-        p5.select(`.s${this.id}`).attribute(
-          'style',
-          `background-color:${this.bg.replace('1)', '0)')}`,
-        );
       }
       this.diameter =
         p5.map(this.y, 0, p5.windowHeight, 50, 800) + this.meterMap;

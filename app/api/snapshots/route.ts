@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { z } from 'zod';
 import { createSnapshot } from '../../../database/snapshots';
 import {
   type Snapshot,
@@ -20,6 +21,22 @@ export async function POST(
   // Task: Create a snapshot for the current logged in user
   // 1. Get the snapshot data from the request
   const body = await request.json();
+
+  const literalSchema = z.union([
+    z.string(),
+    z.number(),
+    z.boolean(),
+    z.null(),
+  ]);
+  type Literal = z.infer<typeof literalSchema>;
+  type Json = Literal | { [key: string]: Json } | Json[];
+  const jsonSchema: z.ZodType<Json> = z.lazy(() =>
+    z.union([literalSchema, z.array(jsonSchema), z.record(jsonSchema)]),
+  );
+
+  const test = jsonSchema.parse(body);
+
+  console.log('test', test);
 
   // 2. Validate snapshots data with zod
   // const result = snapshotSchema.safeParse(body);

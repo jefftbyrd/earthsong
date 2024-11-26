@@ -70,22 +70,18 @@ export default function Portal(props) {
       <div className={styles.statusBar}>
         {soundsColor.map((sound) => {
           return (
-            <button
+            <div
               key={`soundId-${sound.id}`}
+              // id={sound.id}
+              className={`s${sound.id}`}
+              style={{ backgroundColor: sound.color }}
               onClick={() => {
                 setPlayerTarget(sound.id);
                 setPlaying(!playing);
               }}
             >
-              <div
-                // key={`soundId-${sound.id}`}
-                // id={sound.id}
-                className={`s${sound.id}`}
-                style={{ backgroundColor: sound.color }}
-              >
-                <h3>{sound.name}</h3>
-              </div>
-            </button>
+              <h3>{sound.name}</h3>
+            </div>
           );
         })}
         {/* <button>Save current state</button> */}
