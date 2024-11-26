@@ -1,9 +1,11 @@
 import './globals.css';
 import localFont from 'next/font/local';
 import { cookies } from 'next/headers';
+import Image from 'next/image';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { getUser } from '../database/users';
+import logo from '../public/earthsongLogo.svg';
 import LogoutButton from './(auth)/logout/LogoutButton';
 
 // const geistSans = localFont({
