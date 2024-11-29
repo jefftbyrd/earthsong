@@ -4,7 +4,7 @@ import mapboxgl from 'mapbox-gl';
 import { motion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
 import Freesound from './Freesound';
-import styles from './landing.module.scss';
+import styles from './ui.module.scss';
 
 const initialCenter = [4.510020088079064, 44.66199079784276];
 const initialZoom = 2.14;

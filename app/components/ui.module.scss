@@ -18,7 +18,7 @@
 
 .projection {
   position: absolute;
-  z-index: 999999;
+  z-index: 8;
   left: 0;
   right: 0;
   /* top: 0;   */
@@ -80,7 +80,7 @@
   // top: 10vh;
   // bottom: 0;
   // margin: auto;
-  z-index: 1000;
+  z-index: 8;
   pointer-events: none;
   text-align: center;
   opacity: 0;
@@ -94,7 +94,7 @@
   /* top: 0;   */
   bottom: 2vh;
   margin: auto;
-  z-index: 1000;
+  z-index: 8;
   // pointer-events: none;
   text-align: center;
   // opacity: 0;
@@ -111,4 +111,74 @@
     0 0 92px rgb(255, 230, 0),
     0 0 102px rgb(255, 230, 0),
     0 0 151px rgb(255, 230, 0);
+}
+
+.backToMapIcon,
+.userIcon {
+  color: rgba(255, 0, 89, 0.6);
+  z-index: 10;
+  // opacity: 0.5;
+
+  // &:hover {
+  //   color: rgba(255, 0, 89, 1);
+  // }
+}
+
+.userIcon {
+  position: absolute;
+  // left: 50%;
+  // transform: translate(-50%, 0);
+  bottom: 0;
+  right: 0;
+  // width: 100%;
+  padding: 20px;
+}
+
+.backToMapIcon {
+  position: absolute;
+  // left: 50%;
+  // transform: translate(-50%, 0);
+  bottom: 0;
+  left: 0;
+  // width: 100%;
+  padding: 20px;
+}
+
+.modal {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  z-index: 9;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 1);
+  border-radius: 5px;
+  // background-color: rgba(0, 247, 255, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(2px);
+  padding: 40px 60px;
+  overflow: auto;
+  max-height: 80vh;
+}
+
+.snapshots ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.uiButton {
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 1);
+  width: fit-content;
+  padding: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 1);
+    color: rgba(0, 0, 0, 1);
+  }
 }

@@ -1,15 +1,10 @@
 'use client';
 import { NextReactP5Wrapper } from '@p5-wrapper/next';
-import { getRedirectTypeFromError } from 'next/dist/client/components/redirect';
 import React, { useEffect, useState } from 'react';
-// import * as Tone from 'tone';
 import uniqolor from 'uniqolor';
 import styles from './portal.module.scss';
-// import { getSnapshots } from '../../../database/snapshots';
-// import { getUser } from '../../../database/users';
 import { portalSound } from './portalSound';
 import Save from './Save';
-import SaveSnapshot from './SaveSnapshot';
 import SoundPlayerItem from './SoundPlayerItem';
 
 export default function Portal(props) {
@@ -27,8 +22,6 @@ export default function Portal(props) {
   function handleDataFromChild(data) {
     setDataFromChild(data);
   }
-
-  useEffect(() => {});
 
   useEffect(() => {
     const addColor = async () => {
@@ -69,20 +62,10 @@ export default function Portal(props) {
     return 'Loading...';
   }
 
-  // const aegean = [
-  //   '&#x10107;',
-  //   '&#x10108;',
-  //   '&#x10109;',
-  //   '&#x1010A;',
-  //   '&#x1010B;',
-  // ];
-
   return (
     <>
-      {/* <h1>&#x10107; &#x10108; &#x10109; &#x1010A; &#x1010B;</h1> */}
       {soundsColor.length > 0 ? (
         <NextReactP5Wrapper
-          // className={styles.entirePortal}
           sketch={portalSound}
           soundsColor={soundsColor}
           generate={generate}
@@ -90,6 +73,7 @@ export default function Portal(props) {
           play={playing}
         />
       ) : null}
+
       <div className={styles.multiController}>
         {soundsColor.map((sound, index) => {
           return (
@@ -108,7 +92,7 @@ export default function Portal(props) {
             </div>
           );
         })}
-        {/* <SaveSnapshot sounds={soundsColor} /> */}
+
         <button
           onClick={() => {
             setSaveIsOpen(!saveIsOpen);
@@ -116,15 +100,9 @@ export default function Portal(props) {
         >
           Save
         </button>
+        {/* ) : null} */}
         {saveIsOpen ? (
-          <Save
-            sounds={soundsColor}
-            // setSaveIsOpen={setSaveIsOpen}
-            // saveIsOpen={saveIsOpen}
-            setSaveIsOpen={setSaveIsOpen}
-            // manualClose={manualClose}
-            // setManualClose={setManualClose}
-          />
+          <Save sounds={soundsColor} setSaveIsOpen={setSaveIsOpen} />
         ) : null}
       </div>
     </>

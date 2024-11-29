@@ -14,7 +14,7 @@ import React, { useState } from 'react';
 // import type { Snapshot } from '../../migrations/00002-createTableSnapshots';
 // import type { CreateSnapshotResponseBodyPost } from '../api/snapshots/route';
 import ErrorMessage from '../ErrorMessage';
-import styles from './portal.module.scss';
+import styles from './ui.module.scss';
 
 // import styles from './SnapshotsForm.module.scss';
 
@@ -32,7 +32,7 @@ export default function Save({ sounds, setSaveIsOpen }) {
   const router = useRouter();
 
   return (
-    <div className={styles.saveDialog}>
+    <div className={styles.modal}>
       <h2>Save this projection</h2>
       <p>Save this journey so you can revisit it later.</p>
       <form

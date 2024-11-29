@@ -4,16 +4,16 @@ import { AnimatePresence, motion } from 'motion/react';
 // import Image from 'next/image';
 import { useState } from 'react';
 // import logo from '../public/earthsongLogo.svg';
-import Logo from '../public/Logo.js';
+import Logo2 from '../public/Logo2.js';
+import BackToMap from './components/BackToMap';
 import { clouds } from './components/clouds';
-import styles from './components/landing.module.scss';
 // import Login from './components/Login';
 // import LoginScreen from './components/LoginScreen';
 // import { occult } from './occult';
 import Map from './components/Map';
 import { occult } from './components/occult';
 import Portal from './components/Portal';
-import ProfileScreen from './components/ProfileScreen';
+import styles from './components/ui.module.scss';
 import { wind } from './components/wind';
 
 export default function Earthsong() {
@@ -27,8 +27,8 @@ export default function Earthsong() {
 
   return (
     <>
-      {/* <ProfileScreen /> */}
-      {/* <LoginScreen /> */}
+      {enterPortal ? <BackToMap setEnterPortal={setEnterPortal} /> : null}
+
       {/* Wait until user clicks ✹ to start Earthsong */}
       {!isStarted ? (
         <div className={styles.initiate}>
@@ -51,7 +51,7 @@ export default function Earthsong() {
             }}
             // whileHover={{ scale: 1.5 }}
           >
-            <Logo height="15vw" width="15vw" />
+            <Logo2 height="15vw" width="15vw" />
           </motion.div>
         </div>
       ) : null}

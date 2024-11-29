@@ -1,29 +1,27 @@
 'use client';
-// import { cookies } from 'next/headers';
-// import Link from 'next/link';
-// import { redirect } from 'next/navigation';
+import { AnimatePresence, motion } from 'motion/react';
 import { useState } from 'react';
-// import ProfileScreen from './ProfileScreen';
 import LoginForm from '../(auth)/login/LoginForm';
-// import LogoutButton from '../(auth)/logout/LogoutButton';
-// import { getSnapshots } from '../../database/snapshots';
-// import { getUser } from '../../database/users';
 import StarInverted from '../../public/StarInverted';
-// import { getCookie } from '../../util/cookies';
-import styles from './portal.module.scss';
+import styles from './ui.module.scss';
 
 export default function Login() {
   const [loginOpen, setLoginOpen] = useState(false);
 
   return (
     <>
-      <button
+      <motion.button
+        className={styles.userIcon}
         onClick={() => {
           setLoginOpen(!loginOpen);
         }}
+        whileHover={{
+          color: 'rgba(255, 0, 89, 1)',
+        }}
       >
         <StarInverted height="6vw" width="6vw" />
-      </button>
+      </motion.button>
+
       {loginOpen ? <LoginForm /> : null}
     </>
   );

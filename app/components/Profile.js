@@ -1,37 +1,31 @@
 'use client';
-// import { cookies } from 'next/headers';
-// import Link from 'next/link';
-// import { redirect } from 'next/navigation';
+import { AnimatePresence, motion } from 'motion/react';
 import { useState } from 'react';
-// import ProfileScreen from './ProfileScreen';
 import LoginForm from '../(auth)/login/LoginForm';
-// import LogoutButton from '../(auth)/logout/LogoutButton';
-// import { getSnapshots } from '../../database/snapshots';
-// import { getUser } from '../../database/users';
 import Star from '../../public/Star.js';
 import SnapshotForm from '../snapshots/SnapshotForm';
-// import SnapshotsComponent from '../snapshots/SnapshotsComponent';
-// import { getCookie } from '../../util/cookies';
-import styles from './portal.module.scss';
+import styles from './ui.module.scss';
 
 export default function Profile(props) {
   const [profileOpen, setProfileOpen] = useState(false);
 
   return (
     <>
-      {console.log('snapshots on profile', props.snapshots)}
-      {/* <LoginForm /> */}
-      <button
+      <motion.button
+        className={styles.userIcon}
         onClick={() => {
           setProfileOpen(!profileOpen);
         }}
+        whileHover={{
+          color: 'rgba(255, 0, 89, 1)',
+        }}
       >
         <Star height="6vw" width="6vw" />
-      </button>
+      </motion.button>
+
       {profileOpen ? (
         <SnapshotForm user={props.user} snapshots={props.snapshots} />
       ) : null}
-      {/* <SnapshotsComponent user={props.user} /> */}
     </>
   );
 }

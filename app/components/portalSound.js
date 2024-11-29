@@ -107,21 +107,21 @@ export const portalSound = (p5) => {
     if (frequencyData[0] > 0 || frequencyData[0] < 0) {
       let visualizer = p5.beginShape();
       for (let i = 0; i < frequencyData.length; i++) {
-        let y = p5.map(frequencyData[i], -1, 1, p5.height / 2, 0) - 100;
+        let y = p5.map(frequencyData[i], -1, 1, p5.height / 2, 0) + 50;
         p5.vertex(i * scl, y);
       }
       p5.endShape();
     }
 
-    if (frequencyData[0] === 0) {
-      p5.line(0, 185, p5.windowWidth, 185);
-    }
+    // if (frequencyData[0] === 0) {
+    //   p5.line(0, 185, p5.windowWidth, 185);
+    // }
 
     for (let i = 0; i < 48; i++) {
       let step = p5.windowWidth / 48;
       p5.line(
         step * i,
-        p5.map(frequencyData[i], -1, 1, p5.height / 6, 0) + 100,
+        p5.map(frequencyData[i], -1, 1, p5.height / 6, 0) + 240,
         step * i * 10 - p5.windowWidth * 4,
         p5.windowWidth,
       );
@@ -193,7 +193,7 @@ export const portalSound = (p5) => {
 
           p5.select(`.s${this.id}`).attribute(
             'style',
-            `background-color:${this.bg};opacity: 1;`,
+            `background-color:${this.bg};`,
           );
         } else {
           // p5.fill(this.bg.replace('1)', '0.75)'));

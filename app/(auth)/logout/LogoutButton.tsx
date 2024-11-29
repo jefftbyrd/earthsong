@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import styles from '../../components/ui.module.scss';
 import { logout } from './actions';
 
 export default function LogoutButton() {
@@ -9,7 +10,7 @@ export default function LogoutButton() {
   return (
     <form>
       <button
-        className="logoutButton"
+        className={styles.uiButton}
         formAction={async () => {
           await logout();
           router.refresh();
