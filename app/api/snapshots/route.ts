@@ -22,21 +22,23 @@ export async function POST(
   // 1. Get the snapshot data from the request
   const body = await request.json();
 
-  const literalSchema = z.union([
-    z.string(),
-    z.number(),
-    z.boolean(),
-    z.null(),
-  ]);
-  type Literal = z.infer<typeof literalSchema>;
-  type Json = Literal | { [key: string]: Json } | Json[];
-  const jsonSchema: z.ZodType<Json> = z.lazy(() =>
-    z.union([literalSchema, z.array(jsonSchema), z.record(jsonSchema)]),
-  );
+  // console.log('body', body);
 
-  const test = jsonSchema.parse(body);
+  // const literalSchema = z.union([
+  //   z.string(),
+  //   z.number(),
+  //   z.boolean(),
+  //   z.null(),
+  // ]);
+  // type Literal = z.infer<typeof literalSchema>;
+  // type Json = Literal | { [key: string]: Json } | Json[];
+  // const jsonSchema: z.ZodType<Json> = z.lazy(() =>
+  //   z.union([literalSchema, z.array(jsonSchema), z.record(jsonSchema)]),
+  // );
 
-  console.log('test', test);
+  // const test = jsonSchema.parse(body);
+
+  // console.log('test', test);
 
   // 2. Validate snapshots data with zod
   // const result = snapshotSchema.safeParse(body);
@@ -59,7 +61,10 @@ export async function POST(
     (await createSnapshot(
       sessionTokenCookie,
       // result.data.title,
-      body,
+      body.title,
+      body.sounds,
+      // result.data.name,
+      // result.data.sounds,
     ));
 
   // 5. If the snapshot creation fails, return an error

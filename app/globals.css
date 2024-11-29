@@ -81,6 +81,19 @@ html {
   /* font-family: var(--font-avara); */
 }
 
+button {
+  /* -webkit-appearance: none; */
+  border-radius: 0;
+  text-align: inherit;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  color: inherit;
+  font: inherit;
+}
+
 /* body {
   padding: 20px;
 } */
@@ -94,10 +107,24 @@ html {
 } */
 
 nav {
-  display: grid;
+  display: flex;
   gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  padding-bottom: 30px;
+  /* grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); */
+  /* padding-bottom: 30px; */
+  justify-content: space-between;
+  /* opacity: 0.5; */
+}
+
+nav a,
+nav button {
+  color: white;
+  opacity: 0.5;
+}
+
+nav a:hover,
+nav button:hover {
+  color: white;
+  opacity: 1;
 }
 
 form {
@@ -222,3 +249,30 @@ button:hover {
   align-content: right; */
   color: black;
 }
+
+/* .react-p5-wrapper {
+  z-index: -99999;
+} */
+
+footer {
+  position: absolute;
+  /* top: 50%; */
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 0;
+  width: 100%;
+  /* background-color: green; */
+  padding: 20px;
+}
+
+/* .mapboxgl-ctrl-logo {
+  display: none !important;
+} */
+
+.mapboxgl-ctrl {
+  display: none !important;
+}
+
+/* .mapboxgl-ctrl-attrib {
+  display: none !important;
+} */

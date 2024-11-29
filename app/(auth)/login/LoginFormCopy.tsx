@@ -3,11 +3,10 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { getSafeReturnToPath } from '../../../util/validation';
-import styles from '../../components/portal.module.scss';
 import ErrorMessage from '../../ErrorMessage';
 import type { LoginResponseBody } from '../api/login/route';
 
-// type Props = { returnTo?: string | string[] };
+type Props = { returnTo?: string | string[] };
 
 export default function LoginForm(props: Props) {
   const [username, setUsername] = useState('');
@@ -34,15 +33,23 @@ export default function LoginForm(props: Props) {
       return;
     }
 
-    // router.push(
-    //   getSafeReturnToPath(props.returnTo) || `/profile/${data.user.username}`,
-    // );
+    // router.push(`/profile/${data.user.username}`);
+
+    // This is not a secure returnTo
+    // if (props.returnTo) {
+    //   console.log('Checks Return to: ', props.returnTo);
+    //   router.push(props.returnTo || `/profile/${data.user.username}`);
+    // }
+
+    router.push(
+      getSafeReturnToPath(props.returnTo) || `/profile/${data.user.username}`,
+    );
 
     router.refresh();
   }
 
   return (
-    <div className={styles.modal}>
+    <div>
       <form onSubmit={async (event) => await handleLogin(event)}>
         <label>
           Username

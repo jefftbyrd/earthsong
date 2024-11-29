@@ -3,6 +3,7 @@ import { z } from 'zod';
 
 export type Snapshot = {
   id: number;
+  title: string;
   sounds: any;
   userId: number;
 };
@@ -30,6 +31,7 @@ export async function up(sql: Sql) {
   await sql`
     CREATE TABLE snapshots (
       id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+      title varchar(255) NOT NULL UNIQUE,
       sounds json NOT NULL,
       user_id integer NOT NULL REFERENCES users (id) ON DELETE cascade
     )

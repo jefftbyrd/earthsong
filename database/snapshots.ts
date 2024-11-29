@@ -38,19 +38,36 @@ export const getSnapshot = cache(
 );
 
 export const createSnapshot = cache(
-  async (sessionToken: Session['token'], sounds: string) => {
+  async (sessionToken: Session['token'], title: string, sounds: any) => {
     const [snapshot] = await sql<Snapshot[]>`
       INSERT INTO
-        snapshots (user_id, sounds) (
+        snapshots (user_id, sounds, title) (
           SELECT
             sessions.user_id,
-            ${sounds}
+            ${sounds},
+            ${title}
           FROM
             sessions
           WHERE
             token = ${sessionToken}
             AND sessions.expiry_timestamp > now()
         )
+      RETURNING
+        snapshots.*
+    `;
+
+    return snapshot;
+  },
+);
+
+export const deleteSnapshot = cache(
+  async (sessionToken: Session['token'], id: number) => {
+    const [snapshot] = await sql<Snapshot[]>`
+      DELETE FROM snapshots USING sessions
+      WHERE
+        sessions.token = ${sessionToken}
+        AND sessions.expiry_timestamp > now()
+        AND snapshots.id = ${id}
       RETURNING
         snapshots.*
     `;

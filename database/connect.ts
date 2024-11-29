@@ -1,8 +1,7 @@
+import 'server-only';
 import type { Sql } from 'postgres';
 import postgres from 'postgres';
 import { postgresConfig, setEnvironmentVariables } from '../util/config';
-
-('server-only');
 
 setEnvironmentVariables();
 

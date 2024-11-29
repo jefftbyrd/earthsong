@@ -28,21 +28,15 @@ export default async function SnapshotPage({ params }: Props) {
     );
   }
 
-  console.log('snapshot sounds on snapshotId', snapshot.sounds);
-  // console.log(
-  //   'json parse snapshot sounds on snapshotId',
-  //   JSON.parse(snapshot.sounds),
-  // );
-
   // 4. Finally display the snapshots created by the current user
   return (
     <div>
-      <h1>{snapshot.id}</h1>
+      <h1>{snapshot.title}</h1>
 
       <div>
         <h2>Sounds included in this snapshot</h2>
         {snapshot.sounds.length === 0 ? (
-          'No notes yet'
+          'No snapshots yet'
         ) : (
           <ol>
             {snapshot.sounds.map((sound) => (

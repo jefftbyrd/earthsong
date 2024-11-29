@@ -1,12 +1,21 @@
 import './globals.css';
 import localFont from 'next/font/local';
 import { cookies } from 'next/headers';
-import Image from 'next/image';
+// import Image from 'next/image';
 import Link from 'next/link';
-import type { ReactNode } from 'react';
+import { getSnapshots } from '../database/snapshots';
+// import type { ReactNode } from 'react';
+// import React, { useState } from 'react';
 import { getUser } from '../database/users';
-import logo from '../public/earthsongLogo.svg';
+import Logo from '../public/Logo.js';
+import LoginForm from './(auth)/login/LoginForm';
+// import Star from '../public/Star.js';
+// import logo from '../public/earthsongLogo.svg';
 import LogoutButton from './(auth)/logout/LogoutButton';
+import Button from './components/Button';
+import Login from './components/Login';
+import Profile from './components/Profile';
+import ProfileScreen from './components/ProfileScreen';
 
 // const geistSans = localFont({
 //   src: './fonts/GeistVF.woff',
@@ -23,11 +32,11 @@ import LogoutButton from './(auth)/logout/LogoutButton';
 //   variable: '--font-avara',
 //   weight: '500',
 // });
-const sligoil = localFont({
-  src: './fonts/SligoilMicro.woff',
-  variable: '--font-sligoil',
-  weight: '500',
-});
+// const sligoil = localFont({
+//   src: './fonts/SligoilMicro.woff',
+//   variable: '--font-sligoil',
+//   weight: '500',
+// });
 
 const basteleurMoonlight = localFont({
   src: './fonts/Basteleur-Moonlight.woff2',
@@ -40,14 +49,16 @@ export const metadata = {
   description: 'Earthsong',
 };
 
-type Props = {
-  children: ReactNode;
-};
+// type Props = {
+//   children: ReactNode;
+// };
 
-export default async function RootLayout({ children }: Props) {
+export default async function RootLayout({ children }) {
   const sessionTokenCookie = (await cookies()).get('sessionToken');
+
   const user = sessionTokenCookie && (await getUser(sessionTokenCookie.value));
-  console.log('User: ', user);
+
+  const snapshots = user && (await getSnapshots(sessionTokenCookie.value));
 
   return (
     <html lang="en">
@@ -55,25 +66,16 @@ export default async function RootLayout({ children }: Props) {
         // className={`${geistSans.variable} ${geistMono.variable} ${sligoil.variable}`}
         className={basteleurMoonlight.variable}
       >
-        <header>
-          <nav>
-            <Link href="/">Home</Link>
-
-            {user ? (
-              <>
-                <Link href={`/profile/${user.username}`}>{user.username}</Link>
-                <Link href="/snapshots">View Snapshots</Link>
-                <LogoutButton />
-              </>
-            ) : (
-              <>
-                <Link href="/register">Register</Link>
-                <Link href="/login">Login</Link>
-              </>
-            )}
-          </nav>
-        </header>
         {children}
+        <footer>
+          <nav>
+            <Link href="/">
+              <Logo height="6vw" width="6vw" />
+            </Link>
+
+            {user ? <Profile user={user} snapshots={snapshots} /> : <Login />}
+          </nav>
+        </footer>
       </body>
     </html>
   );

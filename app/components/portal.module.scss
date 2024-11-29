@@ -1,0 +1,99 @@
+/* portal.module.scss */
+.soundObject {
+  // color: $primary-color;
+  font-size: 24px;
+  background-color: orange;
+  height: 300px;
+  width: 300px;
+  // border-radius: 300px;
+  border-radius: 100%;
+}
+
+.multiController {
+  text-transform: capitalize;
+  display: grid;
+  gap: 0px;
+  grid-template-columns: repeat(auto-fill, minmax(19vw, 1fr));
+  div {
+    display: flex;
+    flex-direction: column;
+    // grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 5px;
+    padding: 20px;
+    align-items: left;
+    justify-items: center;
+    justify-content: top;
+    font-size: 1.7vw;
+    text-align: left;
+    // opacity: 0.5;
+    // opacity: 0.5;
+    // word-break: break-all;
+
+    .soundNumber {
+      font-size: 12vw;
+      max-width: fit-content;
+    }
+
+    div {
+      padding: 0px;
+      text-align: left;
+      // width: auto;
+      // background-color: green;
+      max-width: fit-content;
+      // opacity: 1;
+    }
+  }
+}
+
+.soundInfoPanel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 1 !important;
+  color: white;
+  // max-height: fit-content;
+  background-color: green;
+  width: 100%;
+  // padding: 20px;
+  margin: 20px;
+
+  p {
+    padding: 50px;
+  }
+}
+
+// .dialog {
+//   // position: relative;
+//   z-index: 99999;
+//   opacity: 1;
+// }
+
+// .entirePortal {
+//   z-index: -99999;
+// }
+
+.saveDialog {
+  // z-index: 99999;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal {
+  // z-index: 99999;
+  position: absolute;
+  // top: 50%;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// .profileDialog {
+//   // z-index: 99999;
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+// }

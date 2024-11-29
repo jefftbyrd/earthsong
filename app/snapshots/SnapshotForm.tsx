@@ -3,11 +3,14 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import LogoutButton from '../(auth)/logout/LogoutButton';
 import type { User } from '../../migrations/00000-createTableUsers';
 import type { Snapshot } from '../../migrations/00002-createTableSnapshots';
 import type { CreateSnapshotResponseBodyPost } from '../api/snapshots/route';
-import ErrorMessage from '../ErrorMessage';
-import styles from './SnapshotsForm.module.scss';
+import styles from '../components/portal.module.scss';
+
+// import ErrorMessage from '../ErrorMessage';
+// import styles from './SnapshotsForm.module.scss';
 
 type Props = {
   user: User;
@@ -22,7 +25,7 @@ export default function SnapshotsForm(props: Props) {
   const router = useRouter();
 
   return (
-    <>
+    <div className={styles.modal}>
       <h1>Snapshots for {props.user.username}</h1>
 
       <div className={styles.snapshots}>
@@ -33,74 +36,16 @@ export default function SnapshotsForm(props: Props) {
             <ul>
               {props.snapshots.map((snapshot) => (
                 <li key={`snapshots-${snapshot.id}`}>
-                  <Link href={`/snapshots/${snapshot.id}`}>{snapshot.id}</Link>
+                  <Link href={`/snapshots/${snapshot.id}`}>
+                    {snapshot.title}
+                  </Link>
                 </li>
               ))}
             </ul>
           )}
         </div>
-
-        <div className={styles.snapshotsForm}>
-          <div>
-            <h2>Create Snapshot</h2>
-
-            <form
-              onSubmit={async (event) => {
-                event.preventDefault();
-
-                const response = await fetch('/api/snapshots', {
-                  method: 'POST',
-                  body: JSON.stringify({
-                    title,
-                    textContent,
-                  }),
-                });
-
-                setErrorMessage('');
-
-                if (!response.ok) {
-                  const responseBody: CreateSnapshotResponseBodyPost =
-                    await response.json();
-
-                  if ('error' in responseBody) {
-                    // TODO: Use toast instead of showing
-                    // this below creation / update form
-                    setErrorMessage(responseBody.error);
-                    return;
-                  }
-                }
-
-                setTitle('');
-                setTextContent('');
-
-                router.refresh();
-              }}
-            >
-              <label>
-                Title
-                <input
-                  value={title}
-                  onChange={(event) => setTitle(event.currentTarget.value)}
-                />
-              </label>
-
-              <label>
-                Snapshot
-                <input
-                  value={textContent}
-                  onChange={(event) =>
-                    setTextContent(event.currentTarget.value)
-                  }
-                />
-              </label>
-
-              <button>Add Snapshot</button>
-            </form>
-
-            <ErrorMessage>{errorMessage}</ErrorMessage>
-          </div>
-        </div>
       </div>
-    </>
+      <LogoutButton />
+    </div>
   );
 }
