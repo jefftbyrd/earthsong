@@ -11,6 +11,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fontsource/noto-sans-linear-a": "^5.1.0",
     "@headlessui/react": "^2.2.0",
     "@p5-wrapper/next": "^1.0.3",
     "@p5-wrapper/react": "^4.4.2",

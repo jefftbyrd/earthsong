@@ -1,16 +1,22 @@
 import './globals.css';
+import '@fontsource/noto-sans-linear-a';
 import localFont from 'next/font/local';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { getSnapshots } from '../database/snapshots';
 import { getUser } from '../database/users';
-import Login from './components/Login';
-import Profile from './components/Profile';
+import AppWrapper from './context';
 
 const basteleurMoonlight = localFont({
   src: './fonts/Basteleur-Moonlight.woff2',
   variable: '--font-basteleurM',
   weight: '300',
+});
+
+const basteleurBold = localFont({
+  src: './fonts/Basteleur-Bold.woff2',
+  variable: '--font-basteleurB',
+  weight: '900',
 });
 
 export const metadata = {
@@ -32,11 +38,12 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        // className={`${geistSans.variable} ${geistMono.variable} ${sligoil.variable}`}
-        className={basteleurMoonlight.variable}
+        className={`${basteleurBold.variable} ${basteleurMoonlight.variable}`}
+        // className={basteleurMoonlight.variable}
       >
-        {user ? <Profile user={user} snapshots={snapshots} /> : <Login />}
-        {children}
+        <AppWrapper user={user} snapshots={snapshots}>
+          {children}
+        </AppWrapper>
       </body>
     </html>
   );

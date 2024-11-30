@@ -10,7 +10,7 @@ import type { LoginResponseBody } from '../api/login/route';
 
 // type Props = { returnTo?: string | string[] };
 
-export default function LoginForm(props: Props) {
+export default function LoginForm({ setLoginOpen, loginOpen }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<{ message: string }[]>([]);
@@ -60,6 +60,7 @@ export default function LoginForm(props: Props) {
           <label>
             Username
             <input
+              autoFocus={true}
               value={username}
               onChange={(event) => setUsername(event.currentTarget.value)}
             />
@@ -68,6 +69,7 @@ export default function LoginForm(props: Props) {
           <label>
             Password
             <input
+              // autoFocus={true}
               type="password"
               value={password}
               onChange={(event) => setPassword(event.currentTarget.value)}
@@ -90,6 +92,14 @@ export default function LoginForm(props: Props) {
         </form>
         <button className={styles.uiButton} onClick={() => {}}>
           About Earth Song
+        </button>
+        <button
+          className={styles.uiButton}
+          onClick={() => {
+            setLoginOpen(!loginOpen);
+          }}
+        >
+          Close
         </button>
       </motion.div>
     </AnimatePresence>

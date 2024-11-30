@@ -1,7 +1,7 @@
 import * as Tone from 'tone';
 
 export const portalSound = (p5) => {
-  let grotesk = p5.loadFont('/NotoSansLinearB-Regular.ttf');
+  let noto = p5.loadFont('/NotoSansLinearA-Regular.ttf');
   let bins = 64;
 
   // let shapeNumber;
@@ -37,6 +37,7 @@ export const portalSound = (p5) => {
   const aegean = ['𐄇', '𐄈', '𐄉', '𐄊', '𐄋'];
 
   p5.updateWithProps = (props) => {
+    // console.log('resetPortal on portalSound', props.resetPortal);
     if (props.soundsColor) {
       sounds2 = [...props.soundsColor];
     }
@@ -44,7 +45,10 @@ export const portalSound = (p5) => {
       generateShapes();
     }
     if (props.playerTarget && multiPlayer.player(props.playerTarget).loaded) {
-      playSound2(props.playerTarget);
+      playSound(props.playerTarget);
+    }
+    if (props.resetPortal) {
+      stopAll();
     }
   };
 
@@ -53,7 +57,7 @@ export const portalSound = (p5) => {
     soundCanvas.style('position', 'absolute');
     soundCanvas.style('z-index', -9999);
     multiPlayer = new Tone.Players();
-    p5.textFont(grotesk);
+    p5.textFont(noto);
 
     // 32 bins
     // fft = new Tone.FFT();
@@ -66,8 +70,8 @@ export const portalSound = (p5) => {
 
   function generateShapes() {
     sounds2.map((sound, index) => {
-      let x = p5.random(p5.width);
-      let y = p5.random(p5.height);
+      let x = p5.random(p5.width - 300);
+      let y = p5.random(300, p5.height);
       let id = sound.id;
       let name = sound.name;
       let bg = sound.color;
@@ -91,8 +95,6 @@ export const portalSound = (p5) => {
   p5.draw = () => {
     p5.background(0);
 
-    // console.log('sounds2 in draw', sounds2);
-
     // p5.stroke(102, 219, 255);
     let vanishingStroke = p5.color('lightblue');
     vanishingStroke.setAlpha(200);
@@ -103,11 +105,11 @@ export const portalSound = (p5) => {
     visualizerFill.setAlpha(255);
     p5.fill(visualizerFill);
     // p5.noStroke(visualizer);
-    // console.log('frequencyData', frequencyData[0]);
+
     if (frequencyData[0] > 0 || frequencyData[0] < 0) {
       let visualizer = p5.beginShape();
       for (let i = 0; i < frequencyData.length; i++) {
-        let y = p5.map(frequencyData[i], -1, 1, p5.height / 2, 0) + 50;
+        let y = p5.map(frequencyData[i], -1, 1, p5.height / 2, 0);
         p5.vertex(i * scl, y);
       }
       p5.endShape();
@@ -121,7 +123,7 @@ export const portalSound = (p5) => {
       let step = p5.windowWidth / 48;
       p5.line(
         step * i,
-        p5.map(frequencyData[i], -1, 1, p5.height / 6, 0) + 240,
+        p5.map(frequencyData[i], -1, 1, p5.height / 6, 0) + p5.height / 5,
         step * i * 10 - p5.windowWidth * 4,
         p5.windowWidth,
       );
@@ -135,23 +137,23 @@ export const portalSound = (p5) => {
 
   p5.keyPressed = () => {
     if (p5.key === '1') {
-      playSound2(shapes[0].id);
+      playSound(shapes[0].id);
     }
     if (p5.key === '2') {
-      playSound2(shapes[1].id);
+      playSound(shapes[1].id);
     }
     if (p5.key === '3') {
-      playSound2(shapes[2].id);
+      playSound(shapes[2].id);
     }
     if (p5.key === '4') {
-      playSound2(shapes[3].id);
+      playSound(shapes[3].id);
     }
     if (p5.key === '5') {
-      playSound2(shapes[4].id);
+      playSound(shapes[4].id);
     }
   };
 
-  function playSound2(id) {
+  function playSound(id) {
     if (multiPlayer.player(id).loaded) {
       if (multiPlayer.player(id).state === 'started') {
         multiPlayer.player(id).stop();
@@ -159,6 +161,16 @@ export const portalSound = (p5) => {
         multiPlayer.player(id).start();
       }
     }
+  }
+
+  async function stopAll() {
+    // console.log('stop triggered');
+    // p5.removeElements();
+    await multiPlayer.stopAll();
+
+    await multiPlayer.dispose();
+    // multiPlayer = new Tone.Players();
+    p5.remove();
   }
 
   class Shape {
@@ -207,7 +219,7 @@ export const portalSound = (p5) => {
         }
       }
       this.diameter =
-        p5.map(this.y, 0, p5.windowHeight, 50, 800) + this.meterMap;
+        p5.map(this.y, 0, p5.windowHeight, 50, 600) + this.meterMap;
       this.numberSize =
         p5.map(this.y, 0, p5.windowHeight, 10, 200) + this.meterMap / 2;
       // test = p5.select(this.ellipse);
@@ -348,8 +360,8 @@ export const portalSound = (p5) => {
             // );
             this.switch = p5.select(`.s${this.id} div`);
             this.switch.toggleClass('reversed');
-            this.switch = p5.select(`.s${this.id} span`);
-            this.switch.toggleClass('reversed');
+            // this.switch = p5.select(`.s${this.id} span`);
+            // this.switch.toggleClass('reversed');
           }
         };
 
@@ -379,7 +391,7 @@ export const portalSound = (p5) => {
       for (let i = 0; i < shapes.length; i++) {
         let shape = shapes[i];
         let distance = p5.dist(p5.mouseX, p5.mouseY, shape.x, shape.y);
-        let diameter = p5.map(p5.mouseY, 0, p5.windowHeight, 50, 800);
+        let diameter = p5.map(p5.mouseY, 0, p5.windowHeight, 50, 600);
 
         if (distance < diameter / 2) {
           shape.active = true;

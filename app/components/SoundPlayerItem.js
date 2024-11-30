@@ -33,17 +33,8 @@ export default function SoundPlayerItem({
   // }
 
   return (
-    <div>
+    <div className={styles.tryThis}>
       <div className={`s${sound.id}`}>
-        <button
-          className={styles.saveButton}
-          onClick={() => {
-            setDisplayingItem(sound.id);
-            setIsOpen(!isOpen);
-          }}
-        >
-          ?
-        </button>
         <button
           className={styles.outerButton}
           onClick={() => {
@@ -57,13 +48,28 @@ export default function SoundPlayerItem({
             // className={`s${sound.id}`}
             // style={{ backgroundColor: sound.color }}
           >
-            <div className={styles.soundNumber}>{aegean[index]}</div>
-            <div className={styles.soundName}>{sound.name}</div>
+            <span className={styles.soundNumber}>{aegean[index]}</span>
+            <span className={styles.soundName}>{sound.name}</span>
           </div>
+        </button>
+        <button
+          className={styles.infoButton}
+          onClick={() => {
+            setDisplayingItem(sound.id);
+            setIsOpen(!isOpen);
+          }}
+        >
+          𐙁
         </button>
       </div>
       {isOpen && displayingItem === sound.id && (
-        <SoundInfoPanel sound={sound} />
+        <SoundInfoPanel
+          sound={sound}
+          index={index}
+          setIsOpen={setIsOpen}
+          isOpen={isOpen}
+          color={sound.color}
+        />
       )}
     </div>
   );

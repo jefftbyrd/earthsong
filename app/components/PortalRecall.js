@@ -7,7 +7,7 @@ import { portalSound } from './portalSound';
 import Save from './Save';
 import SoundPlayerItem from './SoundPlayerItem';
 
-export default function Portal(props) {
+export default function PortalRecall(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [soundsColor, setSoundsColor] = useState();
   const [generate, setGenerate] = useState(false);
@@ -23,39 +23,17 @@ export default function Portal(props) {
     setDataFromChild(data);
   }
 
+  console.log('props.sounds on portal recall', props.sounds);
+
   useEffect(() => {
-    const addColor = async () => {
-      const response = await props.sounds;
-      const soundsShuffled = response.results
-        .sort(() => 0.5 - Math.random()) // Shuffle array
-        .slice(0, 5); // Select the first 5 items
-      const soundsWithColor = soundsShuffled
-        // .slice(0, 5)
-        .map((sound) => ({
-          ...sound,
-          color: uniqolor
-            .random({ format: 'rgb' })
-            .color.replace(')', ', 1)')
-            .replace('rgb', 'rgba'),
-          url: sound.previews['preview-lq-mp3'],
-          name: sound.name
-            .replaceAll('.wav', '')
-            .replaceAll('.mp3', '')
-            .replaceAll('.WAV', '')
-            .replaceAll('.MP3', '')
-            .replaceAll('.m4a', '')
-            .replaceAll('.flac', '')
-            .replaceAll('.aif', '')
-            .replaceAll('.ogg', '')
-            .replaceAll('_', ' ')
-            .replaceAll('-', ' '),
-        }))
-        .map(({ previews, ...sound }) => sound);
-      setSoundsColor(soundsWithColor);
+    const recallSnapshot = async () => {
+      const recalledSounds = await props.sounds;
+      setSoundsColor(recalledSounds);
       setIsLoading(false);
+      // console.log('soundsColor on portal recall', soundsColor);
     };
 
-    addColor();
+    recallSnapshot();
   }, []);
 
   if (isLoading) {
@@ -94,6 +72,7 @@ export default function Portal(props) {
             </div>
           );
         })}
+
         {props.user ? (
           <button
             onClick={() => {

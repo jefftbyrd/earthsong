@@ -122,7 +122,9 @@ export default function Map(props) {
             <motion.button
               className={styles.projectionStart}
               onClick={() => {
-                props.openPortal();
+                // props.openPortal();
+                props.setEnterPortal(true);
+                props.setStartWind(false);
               }}
               animate={{
                 color: [

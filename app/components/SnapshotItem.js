@@ -5,8 +5,18 @@ import styles from './ui.module.scss';
 
 // const elements = document.querySelectorAll('.soundNumber');
 
-export default function SoundPlayerItem({ snapshot }) {
-  const [isOpen, setIsOpen] = useState(false);
+export default function SnapshotItem({
+  snapshot,
+  setRecallId,
+  setPortalRecall,
+  setProfileOpen,
+  setEnterPortal,
+  resetPortal,
+  setResetPortal,
+  setStartWind,
+  setIsStarted,
+}) {
+  // const [isOpen, setIsOpen] = useState(false);
   // const [displayingItem, setDisplayingItem] = useState();
 
   // const aegean = [
@@ -24,7 +34,23 @@ export default function SoundPlayerItem({ snapshot }) {
 
   return (
     <>
-      {snapshot.title} <button className={styles.uiButton}>summon</button>
+      {snapshot.title} {snapshot.id}
+      <button
+        className={styles.uiButton}
+        onClick={async () => {
+          await setResetPortal(true);
+          await setResetPortal(false);
+          await setEnterPortal(false);
+          await setRecallId(snapshot.id);
+          await setPortalRecall(true);
+          setStartWind(false);
+          setProfileOpen(false);
+          setEnterPortal(true);
+          setIsStarted(true);
+        }}
+      >
+        summon
+      </button>
     </>
   );
 }

@@ -28,9 +28,11 @@ export const wind = (p5) => {
       await noise1.start();
       await noise2.start();
     }
-    if (props.stopWind) {
+    if (!props.startWind) {
       await noise1.stop();
       await noise2.stop();
+      // noise1.dispose();
+      // noise2.dispose();
     }
   };
 
@@ -40,48 +42,17 @@ export const wind = (p5) => {
 
     noise1 = new Tone.Noise('pink');
     filter1 = new Tone.Filter(1500, 'lowpass').toDestination();
-    // filter1.frequency.rampTo(20000, 10);
     noise1.connect(filter1);
 
-    // n1Button = p5.createButton('noise 1');
-    // n1Button.position(10, 10);
-    // n1Button.mousePressed(startNoise1);
-
-    // filtFreqSlider1 = p5.createSlider(1, 10000, 200, 1);
-    // filtFreqSlider1.style('width', '200px');
-    // filtFreqSlider1.position(10, 40);
-
-    // filtQslider1 = p5.createSlider(0, 20, 10, 0.1);
-    // filtQslider1.style('width', '200px');
-    // filtQslider1.position(10, 66);
-
-    // volume1 = p5.createSlider(-20, 6, 0, 1);
-    // volume1.style('width', '200px');
-    // volume1.position(10, 100);
-
     noise2 = new Tone.Noise('pink');
+    noise1.fadeIn = 3;
+    noise2.fadeIn = 3;
+    noise1.fadeOut = 3;
+    noise2.fadeOut = 3;
     filter2 = new Tone.Filter(1500, 'bandpass');
-    // feedbackDelay2 = new Tone.FeedbackDelay('2n', 0.7).toDestination();
     channel2 = new Tone.Channel().toDestination();
     noise2.connect(filter2);
     filter2.connect(channel2);
-    // filter2.connect(feedbackDelay2);
-
-    // n2Button = p5.createButton('noise 2');
-    // n2Button.position(300, 10);
-    // n2Button.mousePressed(startNoise2);
-
-    // filtFreqSlider2 = p5.createSlider(1, 5000, 200, 1);
-    // filtFreqSlider2.style('width', '200px');
-    // filtFreqSlider2.position(300, 40);
-
-    // filtQslider2 = p5.createSlider(0, 20, 10, 0.1);
-    // filtQslider2.style('width', '200px');
-    // filtQslider2.position(300, 66);
-
-    // volume2 = p5.createSlider(-20, 6, 0, 1);
-    // volume2.style('width', '200px');
-    // volume2.position(300, 100);
   };
 
   p5.draw = () => {

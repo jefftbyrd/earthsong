@@ -19,7 +19,19 @@ type Props = {
   snapshots: Snapshot[];
 };
 
-export default function SnapshotsForm(props: Props) {
+export default function SnapshotsForm({
+  setRecallId,
+  setPortalRecall,
+  user,
+  snapshots,
+  setProfileOpen,
+  profileOpen,
+  setEnterPortal,
+  setResetPortal,
+  resetPortal,
+  setStartWind,
+  setIsStarted,
+}) {
   // const [title, setTitle] = useState('');
   // const [textContent, setTextContent] = useState('');
   // const [errorMessage, setErrorMessage] = useState('');
@@ -38,16 +50,26 @@ export default function SnapshotsForm(props: Props) {
           ease: [0, 0.71, 0.2, 1.01],
         }}
       >
-        <p>Welcome, {props.user.username}.</p>
-        <h1>Return to a saved place</h1>
+        <p>Welcome, {user.username}.</p>
+        <h1>Saved Places</h1>
         <div className={styles.snapshots}>
-          {props.snapshots.length === 0 ? (
+          {snapshots.length === 0 ? (
             'No snapshots yet'
           ) : (
             <ul>
-              {props.snapshots.map((snapshot) => (
+              {snapshots.map((snapshot) => (
                 <li key={`snapshots-${snapshot.id}`}>
-                  <SnapshotItem snapshot={snapshot} />
+                  <SnapshotItem
+                    snapshot={snapshot}
+                    setRecallId={setRecallId}
+                    setPortalRecall={setPortalRecall}
+                    setProfileOpen={setProfileOpen}
+                    setEnterPortal={setEnterPortal}
+                    setResetPortal={setResetPortal}
+                    resetPortal={resetPortal}
+                    setStartWind={setStartWind}
+                    setIsStarted={setIsStarted}
+                  />
                 </li>
               ))}
             </ul>
@@ -56,6 +78,14 @@ export default function SnapshotsForm(props: Props) {
         <LogoutButton />
         <button className={styles.uiButton} onClick={() => {}}>
           About Earth Song
+        </button>
+        <button
+          className={styles.uiButton}
+          onClick={() => {
+            setProfileOpen(!profileOpen);
+          }}
+        >
+          Close
         </button>
       </motion.div>
     </AnimatePresence>

@@ -15,17 +15,24 @@
   gap: 0px;
   grid-template-columns: repeat(auto-fill, minmax(19vw, 1fr));
   color: white;
+  align-items: start;
 
-  div div {
+  .tryThis div {
     // display: flex;
-    display: grid;
+    // display: grid;
+    // align-items: start;
+    gap: 0px;
+    // padding-bottom: 10px;
+    display: relative;
+    // height: 12rem;
     // width: 100%;
     // height: 260px;
-    min-height: fit-content;
+    // min-height: fit-content;
+    // padding-bottom: 10px;
     // overflow: hidden;
     // position: relative;
     // flex-direction: column;
-    grid-template-rows: repeat(auto-fill, minmax(60px, 1fr));
+    // grid-template-rows: repeat(auto-fill, minmax(1px, 1fr));
     // gap: 5px;
     // padding: 20px;
     // align-items: top;
@@ -37,59 +44,101 @@
     // opacity: 0.5;
     // word-break: break-all;
 
-    .saveButton {
-      // position: absolute;
-      // border: 1px solid white;
-      // padding: 5px;
-      // border-radius: 5px;
-      z-index: 8;
-      // right: 0;
-      margin: 5px 10px;
-      text-align: right;
-      justify-content: right;
-      height: 0px;
-      // background-color: blue;
-    }
-
     .outerButton {
-      padding: 0px 20px;
-      // height: 5vh;
+      padding: 10px;
+      display: flex;
+      // height: 8rem;
+      // background-color: purple;
+      height: 7.4rem;
       width: 100%;
       // height: 7vh;
 
-      div {
-        width: 100%;
-      }
+      // div {
+      //   width: 100%;
+      // }
 
       .soundText {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+        // display: grid;
+        // align-items: start;
+        // justify-items: start;
+        // grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+        display: flex;
+        // padding-top: 10px;
+        align-items: flex-start;
+        // justify-items: start;
+        // background-color: blue;
 
         .soundNumber {
-          font-size: 12rem;
-          line-height: 0rem;
+          // font-family: 'Noto Sans Linear B', sans-serif;
+          // font-family: 'UnifontEX', monospace;
+          font-family: 'Noto Sans Linear A', sans-serif;
+          font-size: 10rem;
+          line-height: 3.3rem;
           // padding: 0px;
           // margin-top: 4rem;
           // margin-bottom: -6rem;
           // // transform: rotate(90deg) !important;
           // pointer-events: none;
           // // height: 60px;
-          // // background-color: blue;
+          // background-color: blue;
           // text-align: center;
+          // overflow: hidden;
+          // height: 12rem;
+          // margin-bottom: 2.5rem;
+          // max-width: fit-content;
         }
 
         .soundName {
           font-size: 1.3rem;
-          margin-top: 30px;
+          margin-left: 15px;
+          overflow-wrap: anywhere;
+          // overflow-wrap: break-word;
+          // word-break: auto-phrase;
+          // overflow-wrap: break-word;
+          // word-break: break-all;
+          // margin-top: 20px;
           // max-height: 3.5rem;
           // overflow: hidden;
           // display: block; /* or inline-block */
-          text-overflow: ellipsis;
-          word-wrap: break-word;
+          // text-overflow: ellipsis;
+          // word-wrap: break-word;
+          // overflow: hidden;
+          // max-height: 2.6rem;
+          // line-height: 1.3em;
+          // background-color: yellow;
           overflow: hidden;
-          max-height: 2rem;
-          line-height: 1.3em;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          line-height: 1.6rem;
+          max-height: 6.4rem; /* Limiting to 2 lines */
+          -webkit-line-clamp: 4; /* Specify the number of lines */
+          -webkit-box-orient: vertical;
         }
+      }
+    }
+    .infoButton {
+      // position: absolute;
+      font-family: 'Noto Sans Linear A', sans-serif;
+      font-size: 1.6rem;
+      bottom: 0;
+      // border: 1px solid white;
+      // padding: 5px;
+      // border-radius: 5px;
+      z-index: 8;
+      // right: 0;
+      // margin: 5px 10px;
+      text-align: right;
+      // vertical-align: bottom;
+      justify-content: right;
+      // height: 0px;
+      // background-color: green;
+      width: 100%;
+      padding: 0px 12px 5px 0px;
+      color: white;
+      // background-color: black;
+
+      &:hover {
+        color: black;
       }
     }
   }
@@ -97,36 +146,97 @@
 
 .soundInfoPanel {
   position: absolute;
-  z-index: 9999999;
-  // bottom: 20vh;
-  // left: 10px;
-  // right: 10px;
-  // right: 0;
-  opacity: 1 !important;
-  color: white;
-  // max-height: fit-content;
-  // background-color: green;
-  width: 50%;
-  // padding: 20px;
-  // margin: 20px;
+  z-index: 8;
+  word-wrap: break-word;
+  padding: 0px;
+
+  // color: black;
+
+  width: 40%;
+
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border: 1px solid rgba(255, 255, 255, 1);
   border-radius: 5px;
-  background-color: rgba(9, 101, 146, 1) !important;
-  // backdrop-filter: blur(6px);
+  // background-color: rgba(9, 101, 146, 0.5);
+  backdrop-filter: blur(6px);
   // -webkit-backdrop-filter: blur(2px);
-  padding: 40px 60px;
+  // padding: 40px 40px 0px 40px;
   overflow: auto;
-  // max-height: 80vh;
+  max-height: 80vh;
 
-  ul {
-    list-style: none;
+  .closeButton {
+    font-family: 'Noto Sans Linear A', sans-serif;
+    font-size: 3rem;
+    bottom: 0;
+    text-align: right;
+    width: 100%;
+    // background-color: yellow;
+    margin: 0px;
+    padding: 0px;
+    padding: 0px 15px 0px 0px;
+    color: white;
+
+    &:hover {
+      color: black;
+    }
   }
 
-  p {
-    margin-top: 1rem;
+  .title {
+    // display: grid;
+    // grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+    // display: flex;
+    align-items: center;
+    // gap: 40px;
+    margin: 0px 40px;
+
+    h2 {
+      margin: 0;
+      padding: 0;
+    }
+
+    .infoSoundNumber {
+      font-family: 'Noto Sans Linear A', sans-serif;
+      font-size: 14rem;
+      margin-top: -6rem;
+      margin-bottom: 0px;
+      line-height: 14rem;
+      text-align: left;
+      // margin-bottom: 1rem;
+      // background-color: orange;
+      // margin-right: 40px;
+      // color: white;
+    }
+  }
+
+  .content {
+    padding: 20px 40px 60px 40px;
+    // background-color: green;
+    // display: grid;
+    // grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+    // flex-direction: row;
+    // gap: 30px;
+
+    ul {
+      list-style: none;
+      // margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    p {
+      margin-top: 2rem;
+      // border: 0.5px black solid;
+      // padding: 10px;
+      font-size: 1.3rem;
+      line-height: 2rem;
+    }
+
+    .heavy {
+      font-family: var(--font-basteleurB);
+    }
   }
 }
 

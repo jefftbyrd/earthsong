@@ -6,7 +6,17 @@ import Star from '../../public/Star.js';
 import SnapshotForm from '../snapshots/SnapshotForm';
 import styles from './ui.module.scss';
 
-export default function Profile(props) {
+export default function Profile({
+  user,
+  snapshots,
+  setRecallId,
+  setPortalRecall,
+  setEnterPortal,
+  setResetPortal,
+  resetPortal,
+  setStartWind,
+  setIsStarted,
+}) {
   const [profileOpen, setProfileOpen] = useState(false);
 
   return (
@@ -18,13 +28,26 @@ export default function Profile(props) {
         }}
         whileHover={{
           color: 'rgba(255, 0, 89, 1)',
+          rotate: 20,
         }}
       >
         <Star height="6vw" width="6vw" />
       </motion.button>
 
       {profileOpen ? (
-        <SnapshotForm user={props.user} snapshots={props.snapshots} />
+        <SnapshotForm
+          user={user}
+          snapshots={snapshots}
+          setProfileOpen={setProfileOpen}
+          profileOpen={profileOpen}
+          setRecallId={setRecallId}
+          setPortalRecall={setPortalRecall}
+          setEnterPortal={setEnterPortal}
+          setResetPortal={setResetPortal}
+          resetPortal={resetPortal}
+          setStartWind={setStartWind}
+          setIsStarted={setIsStarted}
+        />
       ) : null}
     </>
   );

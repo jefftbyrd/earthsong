@@ -4,7 +4,13 @@ import styles from './portal.module.scss';
 
 // const elements = document.querySelectorAll('.soundNumber');
 
-export default function SoundInfoPanel({ sound }) {
+export default function SoundInfoPanel({
+  sound,
+  index,
+  setIsOpen,
+  isOpen,
+  color,
+}) {
   const minutes = Math.floor(sound.duration / 60);
   const seconds = Math.floor(sound.duration % 60)
     .toString()
@@ -12,18 +18,48 @@ export default function SoundInfoPanel({ sound }) {
   const geotagSplit = sound.geotag.split(' ');
   const location = `${Number(geotagSplit[0]).toFixed(4)}, ${Number(geotagSplit[1]).toFixed(4)}`;
 
+  const aegean = ['𐄇', '𐄈', '𐄉', '𐄊', '𐄋'];
+
+  // const cleanDescription = sound.description.replace(/(<([^>]+)>)/gi, '');
+  const cleanDescription = sound.description.replace(/<[^>]*>/g, '');
+  const adjustColor = color.replace('1)', '0.5)');
+  console.log('adjustcolor', adjustColor);
+  console.log('color', color);
+
   return (
-    <div className={styles.soundInfoPanel}>
-      <h2>{sound.name}</h2>
-      <ul>
-        <li>Location: {location}</li>
-        <li>Username: {sound.username}</li>
-        <li>
-          Duration: {minutes}:{seconds}
-        </li>
-        <li>Tags: {sound.tags.join(', ')}</li>
-      </ul>
-      <p>{sound.description}</p>
+    <div
+      className={styles.soundInfoPanel}
+      style={{ backgroundColor: adjustColor }}
+    >
+      <button
+        className={styles.closeButton}
+        onClick={() => {
+          setIsOpen(!isOpen);
+        }}
+      >
+        𐛠
+      </button>
+      <div className={styles.title}>
+        <div className={styles.infoSoundNumber}>{aegean[index]}</div>
+        <h2>{sound.name}</h2>
+      </div>
+      <div className={styles.content}>
+        <ul>
+          <li>
+            <span className={styles.heavy}>Location:</span> {location}
+          </li>
+          <li>
+            <span className={styles.heavy}>Username:</span> {sound.username}
+          </li>
+          <li>
+            <span className={styles.heavy}>Duration:</span> {minutes}:{seconds}
+          </li>
+          <li>
+            <span className={styles.heavy}>Tags:</span> {sound.tags.join(', ')}
+          </li>
+        </ul>
+        <p>{cleanDescription}</p>
+      </div>
     </div>
   );
 }

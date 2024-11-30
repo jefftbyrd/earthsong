@@ -17,12 +17,15 @@ export default function Login() {
         }}
         whileHover={{
           color: 'rgba(255, 0, 89, 1)',
+          rotate: 30,
         }}
       >
         <StarInverted height="6vw" width="6vw" />
       </motion.button>
 
-      {loginOpen ? <LoginForm /> : null}
+      {loginOpen ? (
+        <LoginForm setLoginOpen={setLoginOpen} loginOpen={loginOpen} />
+      ) : null}
     </>
   );
 }
