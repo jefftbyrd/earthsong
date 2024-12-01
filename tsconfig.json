@@ -6,8 +6,7 @@
       {
         "name": "next"
       }
-    ],
-    "jsx": "preserve"
+    ]
   },
   "include": [
     "**/*.ts",
@@ -16,7 +15,6 @@
     "**/*.jsx",
     "**/*.cjs",
     "**/*.mjs",
-    ".next/types/**/*.ts",
-    "app/(sketch)/sketch1/page.js"
+    ".next/types/**/*.ts"
   ]
 }
