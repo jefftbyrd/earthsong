@@ -1,22 +1,17 @@
 'use client';
 import { NextReactP5Wrapper } from '@p5-wrapper/next';
 import { AnimatePresence, motion } from 'motion/react';
-// import Image from 'next/image';
 import { useContext, useState } from 'react';
-// import logo from '../public/earthsongLogo.svg';
 import Logo2 from '../public/Logo2.js';
-// import { loadSnapshots } from './components/actions';
 import BackToMap from './components/BackToMap';
 import { clouds } from './components/clouds';
 import Login from './components/Login';
-// import Login from './components/Login';
-// import LoginScreen from './components/LoginScreen';
-// import { occult } from './occult';
 import Map from './components/Map';
 import { occult } from './components/occult';
 import Portal from './components/Portal';
 import PortalRecall from './components/PortalRecall';
 import Profile from './components/Profile';
+import Title from './components/Title';
 import styles from './components/ui.module.scss';
 import { wind } from './components/wind';
 import { earthsongContext } from './context';
@@ -29,8 +24,6 @@ export default function Earthsong() {
   const [portalRecall, setPortalRecall] = useState(false);
   const [recallId, setRecallId] = useState();
   const [startWind, setStartWind] = useState(false);
-  // const snapshots = useContext(snapshotsContext);
-  // const user = useContext(userContext);
   const earthsong = useContext(earthsongContext);
 
   const user = earthsong[0];
@@ -40,13 +33,21 @@ export default function Earthsong() {
     setDataFromChild(data);
   }
 
-  // loadSnapshots();
-
   return (
     <>
       {/* If sound portal is open, display the return to map icon/link */}
-      {console.log('enterportal', enterPortal)}
-      {console.log('portalRecall', portalRecall)}
+      {user ? (
+        <motion.h1
+          className="welcomeMessage"
+          animate={{
+            opacity: [0, 1, 0],
+            transition: { duration: 3, times: [0, 0.5, 1] },
+          }}
+        >
+          Welcome, {user.username}.
+        </motion.h1>
+      ) : null}
+
       <AnimatePresence>
         {enterPortal || portalRecall ? (
           <BackToMap
@@ -70,6 +71,7 @@ export default function Earthsong() {
           resetPortal={resetPortal}
           setStartWind={setStartWind}
           setIsStarted={setIsStarted}
+          portalRecall={portalRecall}
         />
       ) : (
         <Login />
@@ -77,7 +79,7 @@ export default function Earthsong() {
 
       {/* Wait until user clicks ✹ to start Earthsong */}
       {!isStarted && !portalRecall ? (
-        <div className={styles.initiate}>
+        <div className={styles.start}>
           <motion.div
             className={styles.star}
             onClick={() => {
@@ -90,7 +92,6 @@ export default function Earthsong() {
               color: ['rgb(255, 0, 89)', 'rgb(181, 0, 78)', 'rgb(255, 0, 89)'],
               // rotate: [-3, 3, -3],
               // width: ['13vw', '16vw', '13vw'],
-              // textShadow: [' ', '#FC0 24px 0 5px', ' '],
             }}
             transition={{
               // restSpeed: 0.9,
@@ -106,25 +107,10 @@ export default function Earthsong() {
       ) : null}
 
       {/* Wind generator is ready, but waits for start. */}
-      <NextReactP5Wrapper
-        sketch={wind}
-        // startWind={isStarted}
-        // stopWind={enterPortal}
-        startWind={startWind}
-      />
+      <NextReactP5Wrapper sketch={wind} startWind={startWind} />
 
       {/* Title h1 waits for start */}
-      {isStarted ? (
-        <motion.h1
-          className={styles.earthsong}
-          animate={{
-            opacity: [0, 0, 1, 1, 0],
-            transition: { duration: 6, times: [0, 0.6, 0.8, 0.9, 1] },
-          }}
-        >
-          Earth Song
-        </motion.h1>
-      ) : null}
+      {isStarted ? <Title /> : null}
 
       {/* Map waits for start */}
       <AnimatePresence>
@@ -175,11 +161,26 @@ export default function Earthsong() {
         <motion.div
           className={styles.occult}
           animate={{
-            opacity: [0, 0.8, 1, 0],
+            opacity: [0, 0.4, 0.6, 0],
             transition: { duration: 3, times: [0, 0.1, 0.8, 1] },
           }}
         >
           <NextReactP5Wrapper sketch={occult} />
+        </motion.div>
+      ) : null}
+
+      {/* Show initiating */}
+      {enterPortal ? (
+        <motion.div
+          className={styles.initiating}
+          animate={{
+            opacity: [0, 1, 1, 0],
+            color: ['rgb(255, 0, 89)', 'rgb(255, 255, 255)', 'rgb(255, 0, 89)'],
+            // scale: [0, 1],
+            transition: { duration: 4, times: [0, 0.4, 0.8, 1] },
+          }}
+        >
+          Initiating Sonic Projection
         </motion.div>
       ) : null}
 
@@ -209,10 +210,6 @@ export default function Earthsong() {
             transition: { duration: 6, times: [0, 0.5, 1] },
           }}
         >
-          {/* {console.log(
-            'snapshots at call to portal recall',
-            snapshots.find((snapshot) => snapshot.id === recallId).sounds,
-          )} */}
           <PortalRecall
             sounds={
               snapshots.find((snapshot) => snapshot.id === recallId).sounds
@@ -225,5 +222,3 @@ export default function Earthsong() {
     </>
   );
 }
-
-// snapshots.find((snapshot) => snapshot.id === recallId).sounds

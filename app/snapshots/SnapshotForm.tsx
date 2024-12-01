@@ -31,6 +31,7 @@ export default function SnapshotsForm({
   resetPortal,
   setStartWind,
   setIsStarted,
+  portalRecall,
 }) {
   // const [title, setTitle] = useState('');
   // const [textContent, setTextContent] = useState('');
@@ -41,7 +42,7 @@ export default function SnapshotsForm({
   return (
     <AnimatePresence>
       <motion.div
-        className={styles.modal}
+        className={styles.uiModal}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{
@@ -50,43 +51,57 @@ export default function SnapshotsForm({
           ease: [0, 0.71, 0.2, 1.01],
         }}
       >
-        <p>Welcome, {user.username}.</p>
-        <h1>Saved Places</h1>
-        <div className={styles.snapshots}>
-          {snapshots.length === 0 ? (
-            'No snapshots yet'
-          ) : (
-            <ul>
-              {snapshots.map((snapshot) => (
-                <li key={`snapshots-${snapshot.id}`}>
-                  <SnapshotItem
-                    snapshot={snapshot}
-                    setRecallId={setRecallId}
-                    setPortalRecall={setPortalRecall}
-                    setProfileOpen={setProfileOpen}
-                    setEnterPortal={setEnterPortal}
-                    setResetPortal={setResetPortal}
-                    resetPortal={resetPortal}
-                    setStartWind={setStartWind}
-                    setIsStarted={setIsStarted}
-                  />
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
-        <LogoutButton />
-        <button className={styles.uiButton} onClick={() => {}}>
-          About Earth Song
-        </button>
         <button
+          className="closeButton"
+          onClick={() => {
+            setProfileOpen(false);
+          }}
+        >
+          𐛠
+        </button>
+
+        <h3>Welcome, {user.username}.</h3>
+        <div className={styles.userButtons}>
+          <button className={styles.uiButton} onClick={() => {}}>
+            About Earth Song
+          </button>
+          {!portalRecall ? <LogoutButton /> : null}
+        </div>
+        <div className={styles.summon}>
+          <h2>Summon past journeys</h2>
+          <div className={styles.snapshots}>
+            {snapshots.length === 0 ? (
+              'No snapshots yet'
+            ) : (
+              <ul>
+                {snapshots.map((snapshot) => (
+                  <li key={`snapshots-${snapshot.id}`}>
+                    <SnapshotItem
+                      snapshot={snapshot}
+                      setRecallId={setRecallId}
+                      setPortalRecall={setPortalRecall}
+                      setProfileOpen={setProfileOpen}
+                      setEnterPortal={setEnterPortal}
+                      setResetPortal={setResetPortal}
+                      resetPortal={resetPortal}
+                      setStartWind={setStartWind}
+                      setIsStarted={setIsStarted}
+                    />
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </div>
+
+        {/* <button
           className={styles.uiButton}
           onClick={() => {
             setProfileOpen(!profileOpen);
           }}
         >
           Close
-        </button>
+        </button> */}
       </motion.div>
     </AnimatePresence>
   );

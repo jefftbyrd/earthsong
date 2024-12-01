@@ -16,6 +16,7 @@ export default function Profile({
   resetPortal,
   setStartWind,
   setIsStarted,
+  portalRecall,
 }) {
   const [profileOpen, setProfileOpen] = useState(false);
 
@@ -28,7 +29,7 @@ export default function Profile({
         }}
         whileHover={{
           color: 'rgba(255, 0, 89, 1)',
-          rotate: 20,
+          // rotate: 20,
         }}
       >
         <Star height="6vw" width="6vw" />
@@ -47,6 +48,7 @@ export default function Profile({
           resetPortal={resetPortal}
           setStartWind={setStartWind}
           setIsStarted={setIsStarted}
+          portalRecall={portalRecall}
         />
       ) : null}
     </>

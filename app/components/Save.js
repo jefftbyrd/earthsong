@@ -1,5 +1,6 @@
 // 'use client';
 
+import { AnimatePresence, motion } from 'motion/react';
 // import {
 //   Description,
 //   Dialog,
@@ -23,67 +24,99 @@ import styles from './ui.module.scss';
 //   snapshots: Snapshot[];
 // };
 
-export default function Save({ sounds, setSaveIsOpen }) {
+export default function Save({
+  sounds,
+  setSaveIsOpen,
+  setShowSuccessMessage,
+  showSuccessMessage,
+}) {
   // console.log('closeMe', closeMe);
   // const [sounds, setSounds] = useState(props.sounds);
   const [errorMessage, setErrorMessage] = useState('');
   const [title, setTitle] = useState('');
+  // const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   const router = useRouter();
 
   return (
-    <div className={styles.modal}>
-      <h2>Save this projection</h2>
-      <p>Save this journey so you can revisit it later.</p>
-      <form
-        onSubmit={async (event) => {
-          event.preventDefault();
-          // setSaveIsOpen(false);
-
-          const response = await fetch('/api/snapshots', {
-            method: 'POST',
-            body: JSON.stringify({
-              title,
-              sounds,
-            }),
-          });
-
-          setErrorMessage('');
-
-          if (!response.ok) {
-            const responseBody = await response.json();
-
-            if ('error' in responseBody) {
-              // TODO: Use toast instead of showing
-              // this below creation / update form
-              setErrorMessage(responseBody.error);
-              return;
-            }
-          }
-
-          setTitle('');
-          // setTextContent('');
-          // setSounds();
-          setSaveIsOpen(false);
-          // setManualClose(!manualClose);
-          // closeMe();
-          // setSaveIsOpen(!saveIsOpen);
-
-          router.refresh();
+    <AnimatePresence>
+      <motion.div
+        className={styles.uiModal}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{
+          duration: 0.8,
+          delay: 0,
+          ease: [0, 0.71, 0.2, 1.01],
         }}
       >
-        <label>
-          Title
-          <input
-            autoFocus={true}
-            value={title}
-            onChange={(event) => setTitle(event.currentTarget.value)}
-          />
-        </label>
-        <button>Save</button>
-      </form>
+        <button
+          className="closeButton"
+          onClick={() => {
+            setSaveIsOpen(false);
+          }}
+        >
+          𐛠
+        </button>
+        <h2>Save this journey</h2>
+        <p>Save this journey so you can revisit it later.</p>
+        <form
+          onSubmit={async (event) => {
+            event.preventDefault();
+            // setSaveIsOpen(false);
 
-      <ErrorMessage>{errorMessage}</ErrorMessage>
-    </div>
+            const response = await fetch('/api/snapshots', {
+              method: 'POST',
+              body: JSON.stringify({
+                title,
+                sounds,
+              }),
+            });
+
+            setErrorMessage('');
+
+            if (!response.ok) {
+              const responseBody = await response.json();
+
+              if ('error' in responseBody) {
+                // TODO: Use toast instead of showing
+                // this below creation / update form
+                setErrorMessage(responseBody.error);
+                return;
+              }
+            }
+
+            setTitle('');
+            // setTextContent('');
+            // setSounds();
+            await setShowSuccessMessage(!showSuccessMessage);
+            // await setShowSuccessMessage(false);
+            await setSaveIsOpen(false);
+            // await setShowSuccessMessage(false);
+            // await setShowSuccessMessage(false);
+            // setShowSuccessMessage(false);
+            // setManualClose(!manualClose);
+            // closeMe();
+            // setSaveIsOpen(!saveIsOpen);
+
+            router.refresh();
+          }}
+        >
+          <div className={styles.journey}>
+            <label>
+              <h3>Give your journey a name:</h3>
+              <input
+                autoFocus={true}
+                value={title}
+                onChange={(event) => setTitle(event.currentTarget.value)}
+              />
+            </label>
+          </div>
+          <button className={styles.uiButton}>Save</button>
+        </form>
+
+        <ErrorMessage>{errorMessage}</ErrorMessage>
+      </motion.div>
+    </AnimatePresence>
   );
 }

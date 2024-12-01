@@ -7,22 +7,22 @@ export const portalSound = (p5) => {
   // let shapeNumber;
 
   let scl = 10;
-  let strip;
-  let strips = [];
+  // let strip;
+  // let strips = [];
 
-  let fft;
-  let waveforms = [];
+  // let fft;
+  // let waveforms = [];
   let waveform;
   let reversed = false;
   let visualizer;
   let ellipse;
   let test;
 
-  var col = {
-    r: 0,
-    g: 0,
-    b: 0,
-  };
+  // var col = {
+  //   r: 0,
+  //   g: 0,
+  //   b: 0,
+  // };
   let shapes = [],
     sampleDraw,
     playRate;
@@ -196,6 +196,10 @@ export const portalSound = (p5) => {
     }
 
     show() {
+      // p5.noStroke();
+      let shapeStroke = p5.color('lightblue');
+      shapeStroke.setAlpha(100);
+      p5.stroke(shapeStroke);
       if (multiPlayer.player(this.id).loaded) {
         if (multiPlayer.player(this.id).state === 'started') {
           // p5.fill(this.bg);

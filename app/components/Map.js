@@ -85,7 +85,7 @@ export default function Map(props) {
         >
           <motion.div
             animate={{
-              color: ['rgb(255, 0, 89)', 'rgb(255, 230, 0)', 'rgb(255, 0, 89)'],
+              color: ['rgb(255, 0, 89)', 'rgb(255, 145, 0)', 'rgb(255, 0, 89)'],
             }}
             transition={{ repeat: Infinity, duration: 3 }}
           >
@@ -93,6 +93,43 @@ export default function Map(props) {
           </motion.div>
         </motion.div>
       )}
+
+      {/* SEARCHING */}
+      {pin.lat && !enterPortal && !dataFromChild ? (
+        <div className={styles.projection}>
+          <motion.h2
+            animate={{
+              opacity: [0, 1],
+              transition: { duration: 2, times: [0, 1] },
+            }}
+          >
+            {/* Announce the chosen coordinates */}
+            You chose {pin.lat.toFixed(4)}, {pin.lng.toFixed(4)}.
+          </motion.h2>
+
+          <motion.div
+            animate={{
+              opacity: [0, 0, 1],
+              transition: { duration: 2, times: [0, 0.5, 1] },
+            }}
+          >
+            <motion.button
+              className={styles.projectionStart}
+              animate={{
+                color: [
+                  'rgb(255, 0, 89)',
+                  'rgb(255, 145, 0)',
+                  'rgb(255, 0, 89)',
+                ],
+              }}
+              transition={{ repeat: Infinity, duration: 3 }}
+            >
+              {/* Searching the area. */}
+              Searching the area.
+            </motion.button>
+          </motion.div>
+        </div>
+      ) : null}
 
       {/* IF THERE ARE ENOUGH SOUNDS */}
       {pin.lat &&
@@ -116,7 +153,7 @@ export default function Map(props) {
           <motion.div
             animate={{
               opacity: [0, 0, 1],
-              transition: { duration: 3, times: [0, 0.5, 1] },
+              transition: { duration: 2, times: [0, 0.5, 1] },
             }}
           >
             <motion.button
@@ -129,14 +166,15 @@ export default function Map(props) {
               animate={{
                 color: [
                   'rgb(255, 0, 89)',
-                  'rgb(255, 230, 0)',
+                  'rgb(255, 145, 0)',
                   'rgb(255, 0, 89)',
                 ],
+                scale: [1, 1.05, 1],
               }}
               transition={{ repeat: Infinity, duration: 3 }}
             >
               {/* Click to initiate sonic projection */}
-              Initiate sonic projection. Take me there.
+              <span className={styles.heavy}>Take me there.</span>
             </motion.button>
           </motion.div>
         </div>
@@ -169,7 +207,7 @@ export default function Map(props) {
               animate={{
                 color: [
                   'rgb(255, 0, 89)',
-                  'rgb(255, 230, 0)',
+                  'rgb(255, 145, 0)',
                   'rgb(255, 0, 89)',
                 ],
               }}

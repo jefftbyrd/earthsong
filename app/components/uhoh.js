@@ -1,15 +1,13 @@
 'use client';
 import { NextReactP5Wrapper } from '@p5-wrapper/next';
-import { motion } from 'motion/react';
 import React, { useEffect, useState } from 'react';
-import LoginToSaveButton from './LoginToSaveButton';
+import uniqolor from 'uniqolor';
 import styles from './portal.module.scss';
 import { portalSound } from './portalSound';
 import Save from './Save';
-import SaveButton from './SaveButton';
 import SoundPlayerItem from './SoundPlayerItem';
 
-export default function PortalRecall(props) {
+export default function Portal(props) {
   const [isLoading, setIsLoading] = useState(true);
   const [soundsColor, setSoundsColor] = useState();
   const [generate, setGenerate] = useState(false);
@@ -20,21 +18,45 @@ export default function PortalRecall(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [saveIsOpen, setSaveIsOpen] = useState(false);
   const [manualClose, setManualClose] = useState(false);
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   function handleDataFromChild(data) {
     setDataFromChild(data);
   }
 
   useEffect(() => {
-    const recallSnapshot = async () => {
-      const recalledSounds = await props.sounds;
-      setSoundsColor(recalledSounds);
+    const addColor = async () => {
+      const response = await props.sounds;
+      const soundsShuffled = response.results
+        .sort(() => 0.5 - Math.random()) // Shuffle array
+        .slice(0, 5); // Select the first 5 items
+      const soundsWithColor = soundsShuffled
+        // .slice(0, 5)
+        .map((sound) => ({
+          ...sound,
+          color: uniqolor
+            .random({ format: 'rgb' })
+            .color.replace(')', ', 1)')
+            .replace('rgb', 'rgba'),
+          url: sound.previews['preview-lq-mp3'],
+          name: sound.name
+            .replaceAll('.wav', '')
+            .replaceAll('.mp3', '')
+            .replaceAll('.WAV', '')
+            .replaceAll('.MP3', '')
+            .replaceAll('.m4a', '')
+            .replaceAll('.flac', '')
+            .replaceAll('.aif', '')
+            .replaceAll('.ogg', '')
+            .replaceAll('_', ' ')
+            .replaceAll('-', ' ')
+            .replaceAll('mp3', ''),
+        }))
+        .map(({ previews, ...sound }) => sound);
+      setSoundsColor(soundsWithColor);
       setIsLoading(false);
-      // console.log('soundsColor on portal recall', soundsColor);
     };
 
-    recallSnapshot();
+    addColor();
   }, []);
 
   if (isLoading) {
@@ -44,7 +66,6 @@ export default function PortalRecall(props) {
 
   return (
     <>
-      {console.log('showSuccessMessage', showSuccessMessage)}
       {soundsColor.length > 0 ? (
         <NextReactP5Wrapper
           sketch={portalSound}
@@ -74,32 +95,17 @@ export default function PortalRecall(props) {
           );
         })}
         {props.user ? (
-          <SaveButton
-            setSaveIsOpen={setSaveIsOpen}
-            saveIsOpen={saveIsOpen}
-            setShowSuccessMessage={setShowSuccessMessage}
-          />
-        ) : (
-          <LoginToSaveButton />
-        )}
-        {saveIsOpen ? (
-          <Save
-            sounds={soundsColor}
-            setSaveIsOpen={setSaveIsOpen}
-            setShowSuccessMessage={setShowSuccessMessage}
-            showSuccessMessage={showSuccessMessage}
-          />
-        ) : null}
-        {showSuccessMessage ? (
-          <motion.h1
-            className="successMessage"
-            animate={{
-              opacity: [0, 1, 0],
-              transition: { duration: 3, times: [0, 0.5, 1] },
+          <button
+            className={styles.saveSnapshotButton}
+            onClick={() => {
+              setSaveIsOpen(!saveIsOpen);
             }}
           >
-            Your journey was saved!
-          </motion.h1>
+            Save
+          </button>
+        ) : null}
+        {saveIsOpen ? (
+          <Save sounds={soundsColor} setSaveIsOpen={setSaveIsOpen} />
         ) : null}
       </div>
       {/* End multiController */}

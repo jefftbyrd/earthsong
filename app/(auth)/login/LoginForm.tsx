@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { getSafeReturnToPath } from '../../../util/validation';
+import RegisterComponent from '../../components/RegisterComponent';
 import styles from '../../components/ui.module.scss';
 import ErrorMessage from '../../ErrorMessage';
 import type { LoginResponseBody } from '../api/login/route';
@@ -14,6 +15,7 @@ export default function LoginForm({ setLoginOpen, loginOpen }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<{ message: string }[]>([]);
+  const [registerOpen, setRegisterOpen] = useState(false);
 
   const router = useRouter();
 
@@ -45,7 +47,7 @@ export default function LoginForm({ setLoginOpen, loginOpen }) {
   return (
     <AnimatePresence>
       <motion.div
-        className={styles.modal}
+        className={styles.uiModal}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{
@@ -54,53 +56,83 @@ export default function LoginForm({ setLoginOpen, loginOpen }) {
           ease: [0, 0.71, 0.2, 1.01],
         }}
       >
-        <p>Welcome to Earth Song.</p>
-        <h1>Login</h1>
-        <form onSubmit={async (event) => await handleLogin(event)}>
-          <label>
-            Username
-            <input
-              autoFocus={true}
-              value={username}
-              onChange={(event) => setUsername(event.currentTarget.value)}
-            />
-          </label>
-
-          <label>
-            Password
-            <input
-              // autoFocus={true}
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.currentTarget.value)}
-            />
-          </label>
-
-          <button className={styles.uiButton}>login</button>
-
-          {errors.map((error) => (
-            <div className="error" key={`error-${error.message}`}>
-              <ErrorMessage>{error.message}</ErrorMessage>
-            </div>
-          ))}
-
-          <p>
-            If you don't have an account, you should{' '}
-            <button className={styles.uiButton}>register</button>. Registered
-            users can save sounds!
-          </p>
-        </form>
-        <button className={styles.uiButton} onClick={() => {}}>
-          About Earth Song
-        </button>
         <button
-          className={styles.uiButton}
+          className="closeButtonAlt"
           onClick={() => {
             setLoginOpen(!loginOpen);
           }}
         >
-          Close
+          𐛠
         </button>
+        <div className={styles.loginPanel}>
+          <p>
+            Welcome to <span className={styles.heavy}>Earthsong.</span>
+          </p>
+
+          {!registerOpen ? (
+            <div className={styles.loginPath}>
+              <h2>Login</h2>
+              <form onSubmit={async (event) => await handleLogin(event)}>
+                <label>
+                  Username
+                  <input
+                    autoFocus={true}
+                    value={username}
+                    onChange={(event) => setUsername(event.currentTarget.value)}
+                  />
+                </label>
+
+                <label>
+                  Password
+                  <input
+                    // autoFocus={true}
+                    type="password"
+                    value={password}
+                    onChange={(event) => setPassword(event.currentTarget.value)}
+                  />
+                </label>
+
+                <button className={styles.uiButton}>login</button>
+
+                {errors.map((error) => (
+                  <div className="error" key={`error-${error.message}`}>
+                    <ErrorMessage>{error.message}</ErrorMessage>
+                  </div>
+                ))}
+
+                <p>
+                  If you don't have an account, you should{' '}
+                  <button
+                    className={styles.textButton}
+                    onClick={() => {
+                      setRegisterOpen(!registerOpen);
+                    }}
+                  >
+                    register
+                  </button>
+                  . Registered users can save their journeys and return to them
+                  later.
+                </p>
+              </form>
+            </div>
+          ) : (
+            <RegisterComponent
+              setRegisterOpen={setRegisterOpen}
+              registerOpen={registerOpen}
+            />
+          )}
+          <button className={styles.textButton} onClick={() => {}}>
+            About Earthsong
+          </button>
+          {/* <button
+            className={styles.uiButton}
+            onClick={() => {
+              setLoginOpen(!loginOpen);
+            }}
+          >
+            Close
+          </button> */}
+        </div>
       </motion.div>
     </AnimatePresence>
   );

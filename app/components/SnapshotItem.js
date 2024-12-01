@@ -34,9 +34,9 @@ export default function SnapshotItem({
 
   return (
     <>
-      {snapshot.title} {snapshot.id}
+      {/* {snapshot.title} */}
       <button
-        className={styles.uiButton}
+        // className={styles.uiButton}
         onClick={async () => {
           await setResetPortal(true);
           await setResetPortal(false);
@@ -49,7 +49,7 @@ export default function SnapshotItem({
           setIsStarted(true);
         }}
       >
-        summon
+        {snapshot.title}
       </button>
     </>
   );

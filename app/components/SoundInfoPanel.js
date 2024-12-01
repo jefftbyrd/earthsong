@@ -23,8 +23,6 @@ export default function SoundInfoPanel({
   // const cleanDescription = sound.description.replace(/(<([^>]+)>)/gi, '');
   const cleanDescription = sound.description.replace(/<[^>]*>/g, '');
   const adjustColor = color.replace('1)', '0.5)');
-  console.log('adjustcolor', adjustColor);
-  console.log('color', color);
 
   return (
     <div
@@ -32,7 +30,7 @@ export default function SoundInfoPanel({
       style={{ backgroundColor: adjustColor }}
     >
       <button
-        className={styles.closeButton}
+        className="closeButton"
         onClick={() => {
           setIsOpen(!isOpen);
         }}

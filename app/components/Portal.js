@@ -1,10 +1,13 @@
 'use client';
 import { NextReactP5Wrapper } from '@p5-wrapper/next';
+import { motion } from 'motion/react';
 import React, { useEffect, useState } from 'react';
 import uniqolor from 'uniqolor';
+import LoginToSaveButton from './LoginToSaveButton';
 import styles from './portal.module.scss';
 import { portalSound } from './portalSound';
 import Save from './Save';
+import SaveButton from './SaveButton';
 import SoundPlayerItem from './SoundPlayerItem';
 
 export default function Portal(props) {
@@ -18,6 +21,7 @@ export default function Portal(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [saveIsOpen, setSaveIsOpen] = useState(false);
   const [manualClose, setManualClose] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   function handleDataFromChild(data) {
     setDataFromChild(data);
@@ -48,7 +52,8 @@ export default function Portal(props) {
             .replaceAll('.aif', '')
             .replaceAll('.ogg', '')
             .replaceAll('_', ' ')
-            .replaceAll('-', ' '),
+            .replaceAll('-', ' ')
+            .replaceAll('mp3', ''),
         }))
         .map(({ previews, ...sound }) => sound);
       setSoundsColor(soundsWithColor);
@@ -65,6 +70,7 @@ export default function Portal(props) {
 
   return (
     <>
+      {console.log('showSuccessMessage', showSuccessMessage)}
       {soundsColor.length > 0 ? (
         <NextReactP5Wrapper
           sketch={portalSound}
@@ -75,11 +81,10 @@ export default function Portal(props) {
           resetPortal={props.resetPortal}
         />
       ) : null}
-
       <div className={styles.multiController}>
         {soundsColor.map((sound, index) => {
           return (
-            <div key={`soundId-${sound.id}`}>
+            <div key={`soundId-${sound.id}`} className={styles.soundItem}>
               <SoundPlayerItem
                 sound={sound}
                 index={index}
@@ -95,18 +100,35 @@ export default function Portal(props) {
           );
         })}
         {props.user ? (
-          <button
-            onClick={() => {
-              setSaveIsOpen(!saveIsOpen);
+          <SaveButton
+            setSaveIsOpen={setSaveIsOpen}
+            saveIsOpen={saveIsOpen}
+            setShowSuccessMessage={setShowSuccessMessage}
+          />
+        ) : (
+          <LoginToSaveButton />
+        )}
+        {saveIsOpen ? (
+          <Save
+            sounds={soundsColor}
+            setSaveIsOpen={setSaveIsOpen}
+            setShowSuccessMessage={setShowSuccessMessage}
+            showSuccessMessage={showSuccessMessage}
+          />
+        ) : null}
+        {showSuccessMessage ? (
+          <motion.h1
+            className="successMessage"
+            animate={{
+              opacity: [0, 1, 0],
+              transition: { duration: 3, times: [0, 0.5, 1] },
             }}
           >
-            Save
-          </button>
-        ) : null}
-        {saveIsOpen ? (
-          <Save sounds={soundsColor} setSaveIsOpen={setSaveIsOpen} />
+            Your journey was saved!
+          </motion.h1>
         ) : null}
       </div>
+      {/* End multiController */}
     </>
   );
 }

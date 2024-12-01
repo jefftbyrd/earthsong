@@ -33,7 +33,7 @@ export default function SoundPlayerItem({
   // }
 
   return (
-    <div className={styles.tryThis}>
+    <div className={styles.outerDiv}>
       <div className={`s${sound.id}`}>
         <button
           className={styles.outerButton}

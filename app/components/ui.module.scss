@@ -2,7 +2,7 @@
   pointer-events: none;
 }
 
-.initiate {
+.start {
   display: grid;
   height: 97vh;
   justify-content: center; /* aligns the items horizontally */
@@ -75,16 +75,26 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  // left: 0;
-  // right: 0;
-  // top: 10vh;
-  // bottom: 0;
-  // margin: auto;
   z-index: 8;
   pointer-events: none;
   text-align: center;
   opacity: 0;
   font-size: 15vw;
+  line-height: 15vw;
+}
+
+.initiating {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 8;
+  pointer-events: none;
+  text-align: center;
+  opacity: 0;
+  font-size: 6vw;
+  // line-height: 8vw;
+  // text-transform: uppercase;
 }
 
 .instruction {
@@ -153,6 +163,7 @@
   transform: translate(-50%, -50%);
   z-index: 15;
   background-color: rgba(0, 0, 0, 0.5);
+  // background-color: rgba(255, 0, 89, 0.5);
   border: 1px solid rgba(255, 255, 255, 1);
   border-radius: 5px;
   // background-color: rgba(0, 247, 255, 0.5);
@@ -161,13 +172,6 @@
   padding: 40px 60px;
   overflow: auto;
   max-height: 80vh;
-}
-
-.snapshots ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
 }
 
 .uiButton {
@@ -181,4 +185,166 @@
     background-color: rgba(255, 255, 255, 1);
     color: rgba(0, 0, 0, 1);
   }
+}
+
+.userButtons {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 10px;
+  button {
+    padding: 0.8rem 1.2rem;
+    background-color: rgba(255, 0, 89, 1);
+    color: black;
+    font-family: var(--font-basteleurB);
+  }
+}
+
+.summon {
+  margin-top: 20px;
+
+  .snapshots {
+    ul {
+      margin-top: 20px;
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    li {
+      button {
+        font-size: 1rem;
+        border-radius: 5px;
+        border: 1px solid rgba(255, 255, 255, 1);
+        width: fit-content;
+        padding: 0.8rem 1.2rem;
+        background-color: rgba(0, 0, 0, 0.5);
+
+        &:hover {
+          // opacity: 1;
+          background-color: rgba(255, 0, 89, 1);
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+.journey {
+  margin: 40px 0px;
+
+  input {
+    margin: 10px 0px;
+    border: none;
+    padding: 5px;
+    font-family: var(--font-basteleurM);
+  }
+}
+
+.uiModal {
+  position: absolute;
+  z-index: 8;
+  word-wrap: break-word;
+  padding: 0px 0px 40px 40px;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(255, 255, 255, 1);
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  overflow: auto;
+  max-height: 80vh;
+
+  .title {
+    align-items: center;
+    margin: 0px 40px;
+
+    h2 {
+      margin: 0;
+      padding: 0;
+    }
+
+    .infoSoundNumber {
+      font-family: 'Noto Sans Linear A', sans-serif;
+      font-size: 14rem;
+      margin-top: -6rem;
+      margin-bottom: 0px;
+      line-height: 14rem;
+      text-align: left;
+    }
+  }
+
+  .content {
+    padding: 20px 40px 60px 40px;
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    p {
+      margin-top: 2rem;
+      font-size: 1.3rem;
+      line-height: 2rem;
+    }
+
+    .heavy {
+      font-family: var(--font-basteleurB);
+    }
+  }
+} // end soundInfoPanel
+
+.loginPanel {
+  p {
+    margin-bottom: 20px;
+    line-height: 2rem;
+  }
+  h2 {
+    margin: 20px 0px 10px 0px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    input {
+      font-family: var(--font-basteleurM);
+      margin-left: 10px;
+    }
+  }
+  button {
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid rgba(255, 255, 255, 1);
+    width: fit-content;
+    padding: 0.8rem 1.2rem;
+    background-color: rgba(0, 0, 0, 0.5);
+
+    &:hover {
+      // opacity: 1;
+      background-color: rgba(255, 0, 89, 1);
+      color: black;
+    }
+  }
+}
+
+.heavy {
+  font-family: var(--font-basteleurB);
+}
+
+.textButton {
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: transparent;
+  color: rgba(255, 0, 89, 1);
+  font-family: var(--font-basteleurB);
+  font-size: 1.3rem !important;
 }
