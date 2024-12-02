@@ -1,23 +1,23 @@
 'use client';
 
 import { AnimatePresence, motion } from 'motion/react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+// import Link from 'next/link';
+// import { useRouter } from 'next/navigation';
+// import { useState } from 'react';
 import LogoutButton from '../(auth)/logout/LogoutButton';
-import type { User } from '../../migrations/00000-createTableUsers';
-import type { Snapshot } from '../../migrations/00002-createTableSnapshots';
-import type { CreateSnapshotResponseBodyPost } from '../api/snapshots/route';
+// import type { User } from '../../migrations/00000-createTableUsers';
+// import type { Snapshot } from '../../migrations/00002-createTableSnapshots';
+// import type { CreateSnapshotResponseBodyPost } from '../api/snapshots/route';
 import SnapshotItem from '../components/SnapshotItem';
 import styles from '../components/ui.module.scss';
 
 // import ErrorMessage from '../ErrorMessage';
 // import styles from './SnapshotsForm.module.scss';
 
-type Props = {
-  user: User;
-  snapshots: Snapshot[];
-};
+// type Props = {
+//   user: User;
+//   snapshots: Snapshot[];
+// };
 
 export default function SnapshotsForm({
   setRecallId,
@@ -25,7 +25,7 @@ export default function SnapshotsForm({
   user,
   snapshots,
   setProfileOpen,
-  profileOpen,
+  // profileOpen,
   setEnterPortal,
   setResetPortal,
   resetPortal,

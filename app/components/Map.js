@@ -174,7 +174,7 @@ export default function Map(props) {
               transition={{ repeat: Infinity, duration: 3 }}
             >
               {/* Click to initiate sonic projection */}
-              <span className={styles.heavy}>Take me there.</span>
+              Take me there.
             </motion.button>
           </motion.div>
         </div>

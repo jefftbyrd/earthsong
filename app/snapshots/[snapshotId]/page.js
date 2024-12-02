@@ -2,12 +2,12 @@ import Link from 'next/link';
 import { getSnapshot } from '../../../database/snapshots';
 import { getCookie } from '../../../util/cookies';
 
-type Props = {
-  params: Promise<{
-    snapshotId: string;
-  }>;
-};
-export default async function SnapshotPage({ params }: Props) {
+// type Props = {
+//   params: Promise<{
+//     snapshotId: string;
+//   }>;
+// };
+export default async function SnapshotPage({ params }) {
   // Task: Restrict access to the snapshot page only to the user who created the snapshot
   // 1. Check if the sessionToken cookie exists
   const sessionTokenCookie = await getCookie('sessionToken');

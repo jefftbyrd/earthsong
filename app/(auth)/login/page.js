@@ -5,13 +5,13 @@ import { getValidSessionToken } from '../../../database/sessions';
 import { getSafeReturnToPath } from '../../../util/validation';
 import LoginForm from './LoginForm';
 
-type Props = {
-  searchParams: Promise<{
-    returnTo?: string | string[];
-  }>;
-};
+// type Props = {
+//   searchParams: Promise<{
+//     returnTo?: string | string[];
+//   }>;
+// };
 
-export default async function LoginPage(props: Props) {
+export default async function LoginPage(props) {
   const { returnTo } = await props.searchParams;
   // Task: Add redirect to home if user is logged in
 

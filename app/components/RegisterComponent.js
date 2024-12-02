@@ -2,21 +2,21 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import type { RegisterResponseBody } from '../(auth)/api/register/route';
-import { getSafeReturnToPath } from '../../util/validation';
+// import type { RegisterResponseBody } from '../(auth)/api/register/route';
+// import { getSafeReturnToPath } from '../../util/validation';
 import ErrorMessage from '../ErrorMessage';
 import styles from './ui.module.scss';
 
-type Props = { returnTo?: string | string[] };
+// type Props = { returnTo?: string | string[] };
 
-export default function RegisterComponent(props: Props) {
+export default function RegisterComponent(props) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState<{ message: string }[]>([]);
+  const [errors, setErrors] = useState([]);
 
   const router = useRouter();
 
-  async function handleRegister(event: React.FormEvent<HTMLFormElement>) {
+  async function handleRegister(event) {
     event.preventDefault();
 
     const response = await fetch('api/register', {
@@ -27,7 +27,7 @@ export default function RegisterComponent(props: Props) {
       }),
     });
 
-    const data: RegisterResponseBody = await response.json();
+    const data = await response.json();
 
     if ('errors' in data) {
       setErrors(data.errors);
@@ -56,6 +56,7 @@ export default function RegisterComponent(props: Props) {
         <label>
           Username
           <input
+            autoFocus={true}
             value={username}
             onChange={(event) => setUsername(event.currentTarget.value)}
           />

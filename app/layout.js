@@ -2,7 +2,7 @@ import './globals.css';
 import '@fontsource/noto-sans-linear-a';
 import localFont from 'next/font/local';
 import { cookies } from 'next/headers';
-import Link from 'next/link';
+// import Link from 'next/link';
 import { getSnapshots } from '../database/snapshots';
 import { getUser } from '../database/users';
 import AppWrapper from './context';

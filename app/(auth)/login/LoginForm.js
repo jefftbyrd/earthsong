@@ -3,23 +3,24 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { getSafeReturnToPath } from '../../../util/validation';
+// import { getSafeReturnToPath } from '../../../util/validation';
 import RegisterComponent from '../../components/RegisterComponent';
 import styles from '../../components/ui.module.scss';
 import ErrorMessage from '../../ErrorMessage';
-import type { LoginResponseBody } from '../api/login/route';
+
+// import type { LoginResponseBody } from '../api/login/route';
 
 // type Props = { returnTo?: string | string[] };
 
 export default function LoginForm({ setLoginOpen, loginOpen }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState<{ message: string }[]>([]);
+  const [errors, setErrors] = useState([]);
   const [registerOpen, setRegisterOpen] = useState(false);
 
   const router = useRouter();
 
-  async function handleLogin(event: React.FormEvent<HTMLFormElement>) {
+  async function handleLogin(event) {
     event.preventDefault();
 
     const response = await fetch('api/login', {
@@ -30,7 +31,7 @@ export default function LoginForm({ setLoginOpen, loginOpen }) {
       }),
     });
 
-    const data: LoginResponseBody = await response.json();
+    const data = await response.json();
 
     if ('errors' in data) {
       setErrors(data.errors);

@@ -47,7 +47,7 @@ export default function SoundInfoPanel({
             <span className={styles.heavy}>Location:</span> {location}
           </li>
           <li>
-            <span className={styles.heavy}>Username:</span> {sound.username}
+            <span className={styles.heavy}>Uploaded by:</span> {sound.username}
           </li>
           <li>
             <span className={styles.heavy}>Duration:</span> {minutes}:{seconds}
