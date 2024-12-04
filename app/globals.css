@@ -16,6 +16,14 @@ body {
   overflow: hidden;
 }
 
+a {
+  color: black;
+
+  &:hover {
+    color: rgba(255, 0, 89, 1);
+  }
+}
+
 body {
   /* color: var(--foreground);
   background: var(--background); */

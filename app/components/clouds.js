@@ -27,11 +27,6 @@ export const clouds = (p5) => {
       p5.random(-0.005, 0.005),
     ); // Small acceleration for drift
 
-    // Create the button
-    // button = p5.createButton('dreamscape');
-    // button.position(p5.width / 2 - 50, p5.height / 2 - 10);
-    // button.mousePressed(startDreamscape);
-
     // Initialize colors
     initialSkyColor = p5.color(150, 180, 255);
     targetSkyColor = p5.color(0, 50, 150);
@@ -39,13 +34,6 @@ export const clouds = (p5) => {
     targetCloudColor = p5.color(255, 105, 180);
     startTime = p5.millis();
   };
-
-  // hide screen at start
-  // function startDreamscape() {
-  //   showStartScreen = false;
-  //   startTime = p5.millis();
-  //   button.hide();
-  // }
 
   p5.draw = () => {
     // Show screen
@@ -109,13 +97,6 @@ export const clouds = (p5) => {
           p5.rect(x, y, tileSize, tileSize);
         }
       }
-
-      // Check if 30 seconds have passed
-      // if (timeElapsed > 30000) {
-      //   showStartScreen = true;
-      //   noiseVector = p5.createVector(0, 0); // Reset the noise vector
-      //   noiseVelocity = p5.createVector(0.03, 0); // Reset velocity
-      // }
     }
   };
 };

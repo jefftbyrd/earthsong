@@ -47,13 +47,19 @@ export default function SoundInfoPanel({
             <span className={styles.heavy}>Location:</span> {location}
           </li>
           <li>
-            <span className={styles.heavy}>Uploaded by:</span> {sound.username}
-          </li>
-          <li>
             <span className={styles.heavy}>Duration:</span> {minutes}:{seconds}
           </li>
           <li>
             <span className={styles.heavy}>Tags:</span> {sound.tags.join(', ')}
+          </li>
+          <li>
+            <span className={styles.heavy}>Uploaded by:</span> {sound.username}
+          </li>
+          <li>
+            <span className={styles.heavy}>Page on Freesound:</span>{' '}
+            <a href={sound.freesoundUrl} target="_blank" rel="noreferrer">
+              {sound.name}
+            </a>
           </li>
         </ul>
         <p>{cleanDescription}</p>

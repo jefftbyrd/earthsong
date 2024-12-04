@@ -33,7 +33,7 @@ export default function Map(props) {
     mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_GENERIC_TOKEN;
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current,
-      style: 'mapbox://styles/jefftbyrd/cm38mcin600jv01nw6mrq473m',
+      style: 'mapbox://styles/jefftbyrd/cm473j0lh011801si8hos63hp',
       center: center,
       zoom: zoom,
     });

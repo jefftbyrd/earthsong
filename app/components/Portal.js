@@ -37,6 +37,7 @@ export default function Portal(props) {
         // .slice(0, 5)
         .map((sound) => ({
           ...sound,
+          freesoundUrl: sound.url,
           color: uniqolor
             .random({ format: 'rgb' })
             .color.replace(')', ', 1)')

@@ -1,7 +1,4 @@
 'use client';
-// import { NextReactP5Wrapper } from '@p5-wrapper/next';
-// import { type Sketch } from '@p5-wrapper/react';
-// import React, { useEffect, useRef, useState } from 'react';
 import * as Tone from 'tone';
 
 export const wind = (p5) => {
@@ -16,7 +13,6 @@ export const wind = (p5) => {
   p5.setup = () => {
     let canvas = p5.createCanvas(0, 0);
     canvas.position(0, 0);
-
     noise1 = new Tone.Noise('pink');
     filter1 = new Tone.Filter(0, 'lowpass').toDestination();
     noise1.connect(filter1);
@@ -37,14 +33,13 @@ export const wind = (p5) => {
       noise1.start();
       noise2.start();
     }
-    if (!props.startWind && noise1.state === 'started') {
+    if (!props.startWind && noise1 && noise2 && noise1.state === 'started') {
       noise1.stop();
       noise2.stop();
     }
   };
 
   p5.draw = () => {
-    // p5.background(200);
     drift1 += p5.random(-5, 5);
     if (drift1 < 170) {
       drift1 = 170;
@@ -55,18 +50,11 @@ export const wind = (p5) => {
     filter1.frequency.value = drift1;
     filter1.Q.value = 7.6;
     noise1.volume.value = -13;
-    // p5.text(`filt 1 freq: ${filter1.frequency.value.toFixed(2)}`, 10, 130);
-    // p5.text(`filt 1 Q: ${filter1.Q.value}`, 10, 160);
-    // noiseSynth1.triggerAttackRelease('2n', 1);
-
-    // let baseQ2 = filtQslider2.value();
     let drift3 = p5.random(0.5, -0.5);
     noise2.volume.value = -4;
-    // filter2.frequency.value = filtFreqSlider2.value();
-    // let baseFreq2 = filtFreqSlider2.value();
     let baseFreq2 = 500;
     baseFreq2 += p5.random(-50, 50);
-    // baseFreq2 += p5.random(-15, 15);
+
     filter2.frequency.value = baseFreq2;
     drift2 += p5.random(-0.05, 0.05);
     if (drift2 > 0.4) {
@@ -77,8 +65,5 @@ export const wind = (p5) => {
     }
     filter2.Q.value = 12 + drift3;
     channel2.pan.value = drift2;
-    // p5.text(`filt 2 freq: ${filter2.frequency.value.toFixed(2)}`, 300, 130);
-    // p5.text(`filt 2 Q: ${filter2.Q.value.toFixed(2)}`, 300, 150);
-    // p5.text(`noise 2 pan: ${channel2.pan.value.toFixed(2)}`, 300, 170);
   };
 };

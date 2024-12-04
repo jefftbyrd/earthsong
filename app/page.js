@@ -118,7 +118,7 @@ export default function Earthsong() {
           <motion.div
             animate={{
               opacity: [0, 0, 1],
-              transition: { duration: 4, times: [0, 0.3, 1] },
+              transition: { duration: 4, times: [0, 0.6, 1] },
             }}
             exit={{
               // scale: 10,
@@ -142,9 +142,9 @@ export default function Earthsong() {
           <motion.div
             className={styles.noClick}
             animate={{
-              opacity: [0, 0.7, 0.4],
+              opacity: [0, 0, 0.7, 0.4],
               // scale: [0.8, 0.8, 1, 1, 0.8],
-              transition: { duration: 4, times: [0, 0.9, 1] },
+              transition: { duration: 6, times: [0, 0.2, 0.9, 1] },
             }}
             exit={{
               opacity: 0,
@@ -202,7 +202,7 @@ export default function Earthsong() {
       ) : null}
 
       {/* PortalRecall */}
-      {portalRecall && enterPortal ? (
+      {portalRecall && enterPortal && snapshots ? (
         <motion.div
           animate={{
             opacity: [0, 0, 1],

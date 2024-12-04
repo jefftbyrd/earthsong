@@ -17,7 +17,7 @@ export default function Login() {
         }}
         whileHover={{
           color: 'rgba(255, 0, 89, 1)',
-          // rotate: 30,
+          rotate: 35,
         }}
       >
         <StarInverted height="6vw" width="6vw" />

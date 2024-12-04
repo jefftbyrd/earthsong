@@ -1,11 +1,11 @@
-import { AnimatePresence, motion } from 'motion/react';
+import { motion } from 'motion/react';
 import Logo2 from '../../public/Logo2.js';
 import styles from './ui.module.scss';
 
 export default function BackToMap({
   setEnterPortal,
   setResetPortal,
-  resetPortal,
+  // resetPortal,
   setStartWind,
   setPortalRecall,
 }) {
@@ -13,7 +13,7 @@ export default function BackToMap({
     <motion.button
       className={styles.backToMapIcon}
       onClick={async () => {
-        await setResetPortal(!resetPortal);
+        await setResetPortal(true);
         await setResetPortal(false);
         setStartWind(true);
         setEnterPortal(false);

@@ -52,7 +52,7 @@ export default function SnapshotsForm({
         }}
       >
         <button
-          className="closeButton"
+          className="closeButtonAlt"
           onClick={() => {
             setProfileOpen(false);
           }}
@@ -69,29 +69,31 @@ export default function SnapshotsForm({
         </div>
         <div className={styles.summon}>
           <h2>Summon past journeys</h2>
-          <div className={styles.snapshots}>
-            {snapshots.length === 0 ? (
-              'No snapshots yet'
-            ) : (
-              <ul>
-                {snapshots.map((snapshot) => (
-                  <li key={`snapshots-${snapshot.id}`}>
-                    <SnapshotItem
-                      snapshot={snapshot}
-                      setRecallId={setRecallId}
-                      setPortalRecall={setPortalRecall}
-                      setProfileOpen={setProfileOpen}
-                      setEnterPortal={setEnterPortal}
-                      setResetPortal={setResetPortal}
-                      resetPortal={resetPortal}
-                      setStartWind={setStartWind}
-                      setIsStarted={setIsStarted}
-                    />
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
+          {snapshots && (
+            <div className={styles.snapshots}>
+              {snapshots.length === 0 ? (
+                'No snapshots yet'
+              ) : (
+                <ul>
+                  {snapshots.map((snapshot) => (
+                    <li key={`snapshots-${snapshot.id}`}>
+                      <SnapshotItem
+                        snapshot={snapshot}
+                        setRecallId={setRecallId}
+                        setPortalRecall={setPortalRecall}
+                        setProfileOpen={setProfileOpen}
+                        setEnterPortal={setEnterPortal}
+                        setResetPortal={setResetPortal}
+                        resetPortal={resetPortal}
+                        setStartWind={setStartWind}
+                        setIsStarted={setIsStarted}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          )}
         </div>
 
         {/* <button

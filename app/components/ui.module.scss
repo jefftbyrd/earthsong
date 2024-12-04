@@ -194,9 +194,15 @@
   margin-top: 10px;
   button {
     padding: 0.8rem 1.2rem;
-    background-color: rgba(255, 0, 89, 1);
+    // background-color: rgba(255, 0, 89, 1);
+    background-color: rgba(255, 255, 255, 1);
     color: black;
-    font-family: var(--font-basteleurB);
+    // font-family: var(--font-basteleurB);
+
+    &:hover {
+      background-color: rgba(255, 0, 89, 1);
+      // color: white;
+    }
   }
 }
 

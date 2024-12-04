@@ -34,7 +34,7 @@ export const occult = (p5) => {
     p5.text(word, p5.random(p5.width), p5.random(p5.height));
     // p5.frameRate(18);
     p5.text(word, p5.random(p5.width), p5.random(p5.height));
-    p5.text(word, p5.random(p5.width), p5.random(p5.height));
+    // p5.text(word, p5.random(p5.width), p5.random(p5.height));
     if (fade < 0) fadeAmount = 1;
 
     if (fade > 255) fadeAmount = -10;
