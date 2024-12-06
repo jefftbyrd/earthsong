@@ -7,7 +7,6 @@ After choosing a point on the globe, Earthsong finds sounds recorded nearby and 
 ## Features
 
 - Explore distant places through sound.
-- Sound content is provided by Freesound.org, a worldwide database of user-contributed audio content released under Creative Commons licenses that allow their reuse.
 - Spatial sound player provides an intuitive way of visualizing sounds and positioning them in the stereo field.
 - Special sound playback features: reverse direction, change playback speed.
 - Create your own Earthsong account.
@@ -23,7 +22,6 @@ After choosing a point on the globe, Earthsong finds sounds recorded nearby and 
 - [p5.js](https://p5js.org/) for animation and sound visualization.
 - [tone.js](https://tonejs.github.io/) for sound playback and manipulation.
 - [mapbox](https://www.mapbox.com/) for the interactive globe.
-- [freesound](https://freesound.org/)
 - Sounds are provided by [Freesound.org](https://freesound.org/), a collaborative database of user-contributed audio content. All sounds are released under Creative Commons licenses that allow their reuse.
 
 ## Thanks to
