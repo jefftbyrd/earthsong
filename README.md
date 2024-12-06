@@ -1,4 +1,4 @@
-# EARTHSONG
+# Earthsong
 
 ![Earthsong title screen](./public/earthsong-screen.webp)
 
