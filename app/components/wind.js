@@ -11,7 +11,7 @@ export const wind = (p5) => {
   let channel2;
 
   p5.setup = () => {
-    let canvas = p5.createCanvas(0, 0);
+    const canvas = p5.createCanvas(0, 0);
     canvas.position(0, 0);
     noise1 = new Tone.Noise('pink');
     filter1 = new Tone.Filter(0, 'lowpass').toDestination();

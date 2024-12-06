@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EARTHSONG
 
-## Getting Started
+![Earthsong title screen](./public/earthsong-screen.webp)
 
-First, run the development server:
+After choosing a point on the globe, Earthsong finds sounds recorded nearby and teleports the user to the Earthsong Sound Portal, a spatial sonic playground where they can audition, manipulate and mix sounds to create their own sonic environment.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Explore distant places through sound.
+- Sound content is provided by Freesound.org, a worldwide database of user-contributed audio content released under Creative Commons licenses that allow their reuse.
+- Spatial sound player provides an intuitive way of visualizing sounds and positioning them in the stereo field.
+- Special sound playback features: reverse direction, change playback speed.
+- Create your own Earthsong account.
+- Save snapshots of your favorite journeys and return to them later.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Technologies
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Next.js
+- Node.js with RESTful API
+- PostgreSQL
+- TypeScript/JavaScript
+- HTML/CSS
+- [p5.js](https://p5js.org/) for animation and sound visualization.
+- [tone.js](https://tonejs.github.io/) for sound playback and manipulation.
+- [mapbox](https://www.mapbox.com/) for the interactive globe.
+- [freesound](https://freesound.org/)
+- Sounds are provided by [Freesound.org](https://freesound.org/), a collaborative database of user-contributed audio content. All sounds are released under Creative Commons licenses that allow their reuse.
 
-## Learn More
+## Thanks to
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Sara El Abed](https://github.com/saraelaela), [Anton Kolomoiets](https://github.com/antonkolo) and [Lukas Prochazka](https://github.com/ProchaLu) for technical and emotional support.
+- [Michael Jeffrey Lee](https://www.michaeljeffreylee.com/) for coming up with the name Earthsong, which is also the title of a song from the forthcoming [Budokan Boys](https://budokanboys.club/) album, THE OOZE.
+- [Sunny Sun](https://decodingnature.nyuadim.com/author/ss14740/), who shared the p5 sketch that Earthsong’s cloud overlay animation was adapted from.
+- [Freesound.org](https://freesound.org/) and all who contribute to it.
