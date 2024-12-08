@@ -1,10 +1,12 @@
 'use client';
 
 import { AnimatePresence, motion } from 'motion/react';
+import { useState } from 'react';
 // import Link from 'next/link';
 // import { useRouter } from 'next/navigation';
 // import { useState } from 'react';
 import LogoutButton from '../(auth)/logout/LogoutButton';
+import About from '../components/About';
 // import type { User } from '../../migrations/00000-createTableUsers';
 // import type { Snapshot } from '../../migrations/00002-createTableSnapshots';
 // import type { CreateSnapshotResponseBodyPost } from '../api/snapshots/route';
@@ -36,6 +38,7 @@ export default function SnapshotsForm({
   // const [title, setTitle] = useState('');
   // const [textContent, setTextContent] = useState('');
   // const [errorMessage, setErrorMessage] = useState('');
+  const [aboutOpen, setAboutOpen] = useState(false);
 
   // const router = useRouter();
 
@@ -61,12 +64,7 @@ export default function SnapshotsForm({
         </button>
 
         <h3>Welcome, {user.username}.</h3>
-        <div className={styles.userButtons}>
-          <button className={styles.uiButton} onClick={() => {}}>
-            About Earth Song
-          </button>
-          {!portalRecall ? <LogoutButton /> : null}
-        </div>
+
         <div className={styles.summon}>
           <h2>Summon past journeys</h2>
           {snapshots && (
@@ -96,14 +94,19 @@ export default function SnapshotsForm({
           )}
         </div>
 
-        {/* <button
-          className={styles.uiButton}
+        <button
+          className={styles.textButton}
           onClick={() => {
-            setProfileOpen(!profileOpen);
+            setAboutOpen(!aboutOpen);
           }}
         >
-          Close
-        </button> */}
+          About Earthsong
+        </button>
+        {aboutOpen && <About />}
+
+        <div className={styles.userButtons}>
+          {!portalRecall ? <LogoutButton /> : null}
+        </div>
       </motion.div>
     </AnimatePresence>
   );
