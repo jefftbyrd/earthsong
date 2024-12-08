@@ -22,7 +22,7 @@ export default function About({}) {
             rel="noreferrer"
           >
             Anton Kolomoiets
-          </a>
+          </a>{' '}
           and{' '}
           <a
             target="_blank"
