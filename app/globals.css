@@ -17,10 +17,11 @@ body {
 }
 
 a {
-  color: black;
+  color: rgba(255, 0, 89, 1);
 
   &:hover {
     color: rgba(255, 0, 89, 1);
+    background-color: rgba(0, 0, 0, 0.5);
   }
 }
 
@@ -41,28 +42,28 @@ body {
   );
 }
 
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  line-height: 1.7rem;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+}
+
 h1 {
   font-size: 6vw;
   text-transform: uppercase;
   color: white;
-
-  /* .earthsong {
-    font-size: 15vw;
-  } */
 }
 
 h2 {
   font-size: 3vw;
-  /* color: white; */
 }
 
 h3 {
   font-size: 1.5vw;
 }
-
-/* h4 {
-  font-size: 1.7vw;
-} */
 
 * {
   box-sizing: border-box;
@@ -70,24 +71,11 @@ h3 {
   margin: 0;
 }
 
-/* h2 {
-  word-wrap: break-word;
-} */
-
-/* a {
-  color: inherit;
-  text-decoration: none;
-} */
-
 /* @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
 }  */
-
-html {
-  /* font-family: var(--font-avara); */
-}
 
 button {
   /* -webkit-appearance: none; */
@@ -101,18 +89,6 @@ button {
   color: inherit;
   font: inherit;
 }
-
-/* body {
-  padding: 20px;
-} */
-
-/* #root {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-} */
 
 /* form {
   display: grid;
@@ -248,10 +224,6 @@ button:hover {
 .mapboxgl-ctrl {
   display: none !important;
 }
-
-/* .mapboxgl-ctrl-attrib {
-  display: none !important;
-} */
 
 .successMessage {
   position: absolute;

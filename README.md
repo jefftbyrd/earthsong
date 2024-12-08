@@ -1,4 +1,4 @@
-# EARTHSONG
+# Earthsong
 
 ![Earthsong title screen](./public/earthsong-screen.webp)
 
@@ -28,5 +28,5 @@ After choosing a point on the globe, Earthsong finds sounds recorded nearby and 
 
 - [Sara El Abed](https://github.com/saraelaela), [Anton Kolomoiets](https://github.com/antonkolo) and [Lukas Prochazka](https://github.com/ProchaLu) for technical and emotional support.
 - [Michael Jeffrey Lee](https://www.michaeljeffreylee.com/) for coming up with the name Earthsong, which is also the title of a song from the forthcoming [Budokan Boys](https://budokanboys.club/) album, THE OOZE.
-- [Sunny Sun](https://decodingnature.nyuadim.com/author/ss14740/), who shared the p5 sketch that Earthsong’s cloud overlay animation was adapted from.
+- [Sunny Sun](https://decodingnature.nyuadim.com/author/ss14740/), who shared [cloud sim](https://editor.p5js.org/ss14740/sketches/z-cEmTUPD), the p5 sketch that Earthsong’s cloud overlay animation was adapted from.
 - [Freesound.org](https://freesound.org/) and all who contribute to it.

@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 import styles from './portal.module.scss';
 import SoundInfoPanel from './SoundInfoPanel';
 
-// const elements = document.querySelectorAll('.soundNumber');
-
 export default function SoundPlayerItem({
   sound,
   index,
@@ -13,24 +11,10 @@ export default function SoundPlayerItem({
   playing,
   setDisplayingItem,
   displayingItem,
-  // setIsOpen,
-  // isOpen,
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  // const [displayingItem, setDisplayingItem] = useState();
-
-  // const aegean = [
-  //   '&#x10107;',
-  //   '&#x10108;',
-  //   '&#x10109;',
-  //   '&#x1010A;',
-  //   '&#x1010B;',
-  // ];
 
   const aegean = ['𐄇', '𐄈', '𐄉', '𐄊', '𐄋'];
-  // function toggle(id) {
-  //   setIsOpen(!isOpen);
-  // }
 
   return (
     <div className={styles.outerDiv}>
@@ -41,12 +25,9 @@ export default function SoundPlayerItem({
             setPlaying(!playing);
             setPlayerTarget(sound.id);
           }}
-          // style={{ backgroundColor: sound.color }}
         >
           <div
             className={styles.soundText}
-            // className={`s${sound.id}`}
-            // style={{ backgroundColor: sound.color }}
           >
             <span className={styles.soundNumber}>{aegean[index]}</span>
             <span className={styles.soundName}>{sound.name}</span>

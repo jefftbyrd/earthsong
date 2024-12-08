@@ -3,11 +3,11 @@
 import { AnimatePresence, motion } from 'motion/react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import RegisterComponent from '../../components/RegisterComponent';
-import styles from '../../components/ui.module.scss';
-import ErrorMessage from '../../ErrorMessage';
+import ErrorMessage from '../ErrorMessage';
+import RegisterComponent from './RegisterComponent';
+import styles from './ui.module.scss';
 
-export default function LoginForm({ setLoginOpen, loginOpen }) {
+export default function LoginPanel({ setLoginOpen, loginOpen }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);

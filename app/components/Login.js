@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useState } from 'react';
 import LoginForm from '../(auth)/login/LoginForm';
 import StarInverted from '../../public/StarInverted';
+import LoginPanel from './LoginPanel';
 import styles from './ui.module.scss';
 
 export default function Login() {
@@ -24,7 +25,7 @@ export default function Login() {
       </motion.button>
 
       {loginOpen ? (
-        <LoginForm setLoginOpen={setLoginOpen} loginOpen={loginOpen} />
+        <LoginPanel setLoginOpen={setLoginOpen} loginOpen={loginOpen} />
       ) : null}
     </>
   );

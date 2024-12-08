@@ -1,12 +1,12 @@
 'use client';
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext } from 'react';
 
 // import type { User } from '../types/types';
 
 // export const userContext = createContext<User | undefined>(undefined);
-export const userContext = createContext(undefined);
-export const snapshotsContext = createContext(undefined);
+// export const userContext = createContext(undefined);
+// export const snapshotsContext = createContext(undefined);
 export const earthsongContext = createContext(undefined);
 
 export default function AppWrapper({ children, snapshots, user }) {

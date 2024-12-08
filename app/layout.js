@@ -39,7 +39,6 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <body
         className={`${basteleurBold.variable} ${basteleurMoonlight.variable}`}
-        // className={basteleurMoonlight.variable}
       >
         <AppWrapper user={user} snapshots={snapshots}>
           {children}

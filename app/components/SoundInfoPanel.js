@@ -1,8 +1,5 @@
 'use client';
-import React, { useState } from 'react';
 import styles from './portal.module.scss';
-
-// const elements = document.querySelectorAll('.soundNumber');
 
 export default function SoundInfoPanel({
   sound,
@@ -20,7 +17,6 @@ export default function SoundInfoPanel({
 
   const aegean = ['𐄇', '𐄈', '𐄉', '𐄊', '𐄋'];
 
-  // const cleanDescription = sound.description.replace(/(<([^>]+)>)/gi, '');
   const cleanDescription = sound.description.replace(/<[^>]*>/g, '');
   const adjustColor = color.replace('1)', '0.5)');
 

@@ -2,9 +2,10 @@
 import { NextReactP5Wrapper } from '@p5-wrapper/next';
 import { AnimatePresence, motion } from 'motion/react';
 import { useContext, useState } from 'react';
-import Logo2 from '../public/Logo2.js';
+import Logo from '../public/Logo.js';
 import BackToMap from './components/BackToMap';
 import { clouds } from './components/clouds';
+import HelpButton from './components/HelpButton.js';
 import Login from './components/Login';
 import Map from './components/Map';
 import { occult } from './components/occult';
@@ -50,13 +51,16 @@ export default function Earthsong() {
 
       <AnimatePresence>
         {enterPortal || portalRecall ? (
-          <BackToMap
-            setEnterPortal={setEnterPortal}
-            setResetPortal={setResetPortal}
-            resetPortal={resetPortal}
-            setStartWind={setStartWind}
-            setPortalRecall={setPortalRecall}
-          />
+          <>
+            <BackToMap
+              setEnterPortal={setEnterPortal}
+              setResetPortal={setResetPortal}
+              resetPortal={resetPortal}
+              setStartWind={setStartWind}
+              setPortalRecall={setPortalRecall}
+            />
+            <HelpButton />
+          </>
         ) : null}
       </AnimatePresence>
 
@@ -101,7 +105,7 @@ export default function Earthsong() {
             }}
             // whileHover={{ scale: 1.5 }}
           >
-            <Logo2 height="15vw" width="15vw" />
+            <Logo height="15vw" width="15vw" />
           </motion.div>
         </div>
       ) : null}

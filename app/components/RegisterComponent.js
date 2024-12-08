@@ -51,7 +51,7 @@ export default function RegisterComponent(props) {
 
   return (
     <div className={styles.loginPath}>
-      <h2>Register</h2>
+      <h1>Register</h1>
       <form onSubmit={async (event) => await handleRegister(event)}>
         <label>
           Username
