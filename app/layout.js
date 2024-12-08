@@ -1,5 +1,6 @@
 import './globals.css';
 import '@fontsource/noto-sans-linear-a';
+import { Analytics } from '@vercel/analytics/react';
 import localFont from 'next/font/local';
 import { cookies } from 'next/headers';
 // import Link from 'next/link';
@@ -43,6 +44,7 @@ export default async function RootLayout({ children }) {
         <AppWrapper user={user} snapshots={snapshots}>
           {children}
         </AppWrapper>
+        <Analytics />
       </body>
     </html>
   );

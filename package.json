@@ -15,6 +15,7 @@
     "@p5-wrapper/next": "^1.0.3",
     "@p5-wrapper/react": "^4.4.2",
     "@upleveled/ley": "^0.9.2",
+    "@vercel/analytics": "^1.4.1",
     "bcrypt": "^5.1.1",
     "dotenv-safe": "^9.1.0",
     "mapbox-gl": "^3.7.0",

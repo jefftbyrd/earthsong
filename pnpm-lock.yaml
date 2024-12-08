@@ -20,6 +20,9 @@ importers:
       '@upleveled/ley':
         specifier: ^0.9.2
         version: 0.9.2
+      '@vercel/analytics':
+        specifier: ^1.4.1
+        version: 1.4.1(next@14.2.16(@babel/core@7.26.0)(react-dom@19.0.0-rc-5d19e1c8-20240923(react@19.0.0-rc-5d19e1c8-20240923))(react@19.0.0-rc-5d19e1c8-20240923)(sass@1.80.4))(react@19.0.0-rc-5d19e1c8-20240923)
       bcrypt:
         specifier: ^5.1.1
         version: 5.1.1(encoding@0.1.13)
@@ -948,6 +951,32 @@ packages:
     resolution: {integrity: sha512-FMqEV8phT89jmGQsvPQPmHetgD/KXobykVXoXICp2UqRfzDdHTe4GkGSCu4dzy1d4HiySHs+FS8yEHpB7phiHg==}
     engines: {node: '>= 8'}
     hasBin: true
+
+  '@vercel/analytics@1.4.1':
+    resolution: {integrity: sha512-ekpL4ReX2TH3LnrRZTUKjHHNpNy9S1I7QmS+g/RQXoSUQ8ienzosuX7T9djZ/s8zPhBx1mpHP/Rw5875N+zQIQ==}
+    peerDependencies:
+      '@remix-run/react': ^2
+      '@sveltejs/kit': ^1 || ^2
+      next: '>= 13'
+      react: ^18 || ^19 || ^19.0.0-rc
+      svelte: '>= 4'
+      vue: ^3
+      vue-router: ^4
+    peerDependenciesMeta:
+      '@remix-run/react':
+        optional: true
+      '@sveltejs/kit':
+        optional: true
+      next:
+        optional: true
+      react:
+        optional: true
+      svelte:
+        optional: true
+      vue:
+        optional: true
+      vue-router:
+        optional: true
 
   abbrev@1.1.1:
     resolution: {integrity: sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==}
@@ -4096,6 +4125,11 @@ snapshots:
       mk-dirs: 3.0.0
       sade: 1.8.1
       totalist: 2.0.0
+
+  '@vercel/analytics@1.4.1(next@14.2.16(@babel/core@7.26.0)(react-dom@19.0.0-rc-5d19e1c8-20240923(react@19.0.0-rc-5d19e1c8-20240923))(react@19.0.0-rc-5d19e1c8-20240923)(sass@1.80.4))(react@19.0.0-rc-5d19e1c8-20240923)':
+    optionalDependencies:
+      next: 14.2.16(@babel/core@7.26.0)(react-dom@19.0.0-rc-5d19e1c8-20240923(react@19.0.0-rc-5d19e1c8-20240923))(react@19.0.0-rc-5d19e1c8-20240923)(sass@1.80.4)
+      react: 19.0.0-rc-5d19e1c8-20240923
 
   abbrev@1.1.1: {}
 
