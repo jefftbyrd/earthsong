@@ -4,6 +4,8 @@
 
 After choosing a point on the globe, Earthsong finds sounds recorded nearby and teleports the user to the Earthsong Sound Portal, a spatial sonic playground where they can audition, manipulate and mix sounds to create their own sonic environment.
 
+Visit Earthsong: https://earthsong.world/
+
 ## Features
 
 - Explore distant places through sound.
