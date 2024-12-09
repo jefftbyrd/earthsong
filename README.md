@@ -40,3 +40,4 @@ Visit Earthsong: https://earthsong.world/
 - More consistent styling for info panels.
 - Add sound indicators for actions on the map screen.
 - Simplify states for pop-up screens so that only one can be open at any time.
+- Improve responsive styling.
