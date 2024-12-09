@@ -31,7 +31,7 @@ After choosing a point on the globe, Earthsong finds sounds recorded nearby and 
 - [Sunny Sun](https://decodingnature.nyuadim.com/author/ss14740/), who shared [cloud sim](https://editor.p5js.org/ss14740/sketches/z-cEmTUPD), the p5 sketch that Earthsong’s cloud overlay animation was adapted from.
 - [Freesound.org](https://freesound.org/) and all who contribute to it.
 
-## Planned improvements
+## Planned updates for the next version
 
 - Allow logged-in users to delete saved journeys.
 - Display more detailed information about saved journeys (date it was saved, what sounds are included, etc.)
