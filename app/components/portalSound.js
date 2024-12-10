@@ -422,4 +422,8 @@ export const portalSound = (p5) => {
     // Prevent default functionality.
     return false;
   };
+
+  p5.windowResized = () => {
+    p5.resizeCanvas(p5.windowWidth, p5.windowHeight);
+  };
 };
