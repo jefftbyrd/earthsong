@@ -634,13 +634,15 @@
 }
 
 .mobileNotSupported {
-  padding: 3rem;
+  // position: fixed !important;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 2rem;
+  overflow: visible !important;
 
   h2 {
-    font-size: 3rem;
+    font-size: 2.3rem;
   }
 
   p {
