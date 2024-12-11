@@ -39,6 +39,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        <title>Earthsong</title>
         <meta name="author" content="Jeff T Byrd" />
         <meta name="description" content="Explore the world through sound." />
         <meta name="og:url" content="https://earthsong.world" />
