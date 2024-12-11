@@ -41,14 +41,11 @@ export default async function RootLayout({ children }) {
       <head>
         <title>Earthsong</title>
         <meta name="author" content="Jeff T Byrd" />
-        <meta name="description" content="Explore the world through sound." />
+        <meta name="description" content="Listen to the planet." />
         <meta name="og:url" content="https://earthsong.world" />
         <meta name="og:type" content="website" />
         <meta property="og:title" content="Earthsong" />
-        <meta
-          property="og:description"
-          content="Explore the world through sound."
-        />
+        <meta property="og:description" content="Listen to the planet." />
         <meta
           property="og:image"
           content="https://earthsong.world/earthsong-screen.webp"
@@ -58,10 +55,7 @@ export default async function RootLayout({ children }) {
         <meta property="twitter:domain" content="earthsong.world" />
         <meta property="twitter:url" content="https://earthsong.world" />
         <meta name="twitter:title" content="Earthsong" />
-        <meta
-          name="twitter:description"
-          content="Explore the world through sound."
-        />
+        <meta name="twitter:description" content="Listen to the planet." />
         <meta
           name="twitter:image"
           content="https://earthsong.world/earthsong-screen.webp"
