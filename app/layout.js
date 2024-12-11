@@ -2,9 +2,7 @@ import './globals.css';
 import '@fontsource/noto-sans-linear-a';
 import { Analytics } from '@vercel/analytics/react';
 import localFont from 'next/font/local';
-import Head from 'next/head';
 import { cookies } from 'next/headers';
-// import Link from 'next/link';
 import { getSnapshots } from '../database/snapshots';
 import { getUser } from '../database/users';
 import AppWrapper from './context';
@@ -21,10 +19,11 @@ const basteleurBold = localFont({
   weight: '900',
 });
 
-export const metadata = {
-  title: 'Earthsong',
-  description: 'Earthsong',
-};
+// export const metadata = {
+//   title: 'Earthsong',
+//   description: 'Explore the world through sound.',
+//   // og:image: '/earthsong-screen.webp',
+// };
 
 // type Props = {
 //   children: ReactNode;
@@ -39,6 +38,35 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
+      <head>
+        <meta name="author" content="Jeff T Byrd" />
+        <meta name="description" content="Explore the world through sound." />
+        <meta name="og:url" content="https://earthsong.world" />
+        <meta name="og:type" content="website" />
+        <meta property="og:title" content="Earthsong" />
+        <meta
+          property="og:description"
+          content="Explore the world through sound."
+        />
+        <meta
+          property="og:image"
+          content="https://earthsong.world/earthsong-screen.webp"
+        />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="earthsong.world" />
+        <meta property="twitter:url" content="https://earthsong.world" />
+        <meta name="twitter:title" content="Earthsong" />
+        <meta
+          name="twitter:description"
+          content="Explore the world through sound."
+        />
+        <meta
+          name="twitter:image"
+          content="https://earthsong.world/earthsong-screen.webp"
+        />
+      </head>
+
       <body
         className={`${basteleurBold.variable} ${basteleurMoonlight.variable}`}
       >
