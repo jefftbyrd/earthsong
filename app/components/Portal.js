@@ -71,7 +71,6 @@ export default function Portal(props) {
 
   return (
     <>
-      {console.log('showSuccessMessage', showSuccessMessage)}
       {soundsColor.length > 0 ? (
         <NextReactP5Wrapper
           sketch={portalSound}

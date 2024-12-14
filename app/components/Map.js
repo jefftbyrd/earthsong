@@ -23,10 +23,8 @@ export default function Map(props) {
   const [zoom, setZoom] = useState(initialZoom);
 
   function handleDataFromChild(data) {
-    // console.log('data at handleDataFromChild on map', data);
     setDataFromChild(data);
     props.sendDataToParent(data);
-    // console.log('dataFromChild at handleDataFromChild on map', dataFromChild);
   }
 
   useEffect(() => {
@@ -51,8 +49,6 @@ export default function Map(props) {
       const coords = { lng: lng, lat: lat };
       marker.setLngLat(coords).addTo(mapRef.current);
       setPin(coords);
-      // console.log('coords', coords);
-      // console.log('pin', pin);
       setFetch((prevState) => !prevState);
     });
 

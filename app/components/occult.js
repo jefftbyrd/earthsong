@@ -17,7 +17,6 @@ export const occult = (p5) => {
 
     // argument to split is "delimiter"
     words = sourceText.split(' ');
-    // console.log(words);
     p5.fill(255, 255, 255);
   };
 
