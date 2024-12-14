@@ -44,7 +44,8 @@ export default function Freesound(props) {
     };
     setIsLoading(false);
 
-    fetchData();
+    fetchData().catch(() => console.log('error'));
+    // fetchData();
   }, [props.pin]);
 
   props.sendDataToParent(sounds);

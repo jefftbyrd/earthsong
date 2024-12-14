@@ -1,6 +1,7 @@
 import './globals.css';
 import '@fontsource/noto-sans-linear-a';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import localFont from 'next/font/local';
 import { cookies } from 'next/headers';
 import { getSnapshots } from '../database/snapshots';
@@ -69,6 +70,7 @@ export default async function RootLayout({ children }) {
           {children}
         </AppWrapper>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
