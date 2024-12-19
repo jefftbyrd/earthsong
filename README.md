@@ -33,7 +33,6 @@ After choosing a point on the globe, Earthsong finds sounds recorded nearby and 
 
 ## Planned updates for future versions
 
-- Add a warning message turning away mobile users. The site does not presently work on mobile.
 - Allow logged-in users to delete saved journeys.
 - Display more detailed information about saved journeys (date it was saved, what sounds are included, etc.)
 - More consistent styling for info panels.
